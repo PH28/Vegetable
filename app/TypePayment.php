@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class TypePayment extends Model
 {
+
+	protected $fillable = ['name'];
     
 
     public function orders(){
