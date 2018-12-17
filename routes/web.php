@@ -16,11 +16,12 @@ Route::get('/', function () {
 });
 
 Route::group([
-    /*'middleware' => ['auth', 'is.admin'],*/
+    'middleware' => ['auth', 'isAdmin'],
     'prefix'     => 'admin',
     'namespace'  => 'Admin',
     'as'         => '',
-], function () {
+], 
+function () {
 	Route::get('dashboard', 'HomeController@index')->name('admin.dashboard');
 });
 
