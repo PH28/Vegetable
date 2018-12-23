@@ -16,7 +16,7 @@ class UserTableSeeder extends Seeder
     		'username' => 'Promickey',
     		'password' => bcrypt('admin'),
     		'email' => 'promickey@gmail.com',
-    		'firstName' => 'Admin',
+    		'first_name' => 'Admin',
     		'avatar' => 'avatar',
     		'gender' => 'male',
     		'dob' => '1993-6-2',

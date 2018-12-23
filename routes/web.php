@@ -17,12 +17,14 @@ Route::get('/', function () {
 
 Route::group([
     'middleware' => ['auth', 'isAdmin'],
-    'prefix'     => 'admin',
-    'namespace'  => 'Admin',
-    'as'         => '',
+    'prefix'     => 'admin',  //tiền tố cho domain
+    'namespace'  => 'Admin',  //tiền tố namespace
+    'as'         => 'admin.',  //tiền tố của name route
 ], 
 function () {
-	Route::get('dashboard', 'HomeController@index')->name('admin.dashboard');
+	Route::get('dashboard', 'HomeController@index')->name('dashboard'); //tức là 'admin.dashboard'
+	Route::resource('categories', 'CategoryController');
+	Route::resource('users', 'UserController');
 });
 
 Auth::routes();
