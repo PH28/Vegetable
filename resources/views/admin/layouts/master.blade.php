@@ -404,14 +404,14 @@
 
                     </li>
                     <li class="nav-item nav-dropdown">
-                        <a class="nav-link nav-dropdown-toggle" href="#">
+                        <a class="nav-link" href="{{ route('admin.categories.index') }}">
                             <i class="mdi mdi-cube-outline"></i> Danh Mục Sản Phẩm</a>
 
-                        <ul class="nav-dropdown-items">
+                       <!--  <ul class="nav-dropdown-items">
                             <li class="nav-item">
                                 <a class="nav-link" href="../../contents/pages/pages-signup.html">Rau quả -Trái cây</a>
                             </li>
-                        </ul>
+                        </ul> -->
 
                     </li>
 
@@ -430,7 +430,7 @@
                     </li>
 
                     <li class="nav-item nav-dropdown">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{{ route('admin.users.index') }}">
                             <i class="mdi mdi-account-star"></i> Khách Hàng
                         </a>
 

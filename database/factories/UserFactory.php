@@ -21,7 +21,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'email' => $faker->unique()->safeEmail,
         'username' => $faker->unique()->userName,
         'password' => $faker->password,
-        'firstName' => $faker->firstName($gender),
+        'first_name' => $faker->firstName($gender),
         'avatar' => $faker->url,
         'gender' => $gender,
         'dob' => $faker->dateTimeBetween($startDate = '-30 years', $endDate = '-10 years'),

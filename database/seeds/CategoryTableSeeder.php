@@ -111,10 +111,7 @@ class CategoryTableSeeder extends Seeder
         ]);
 
         //Gia Vị & Phụ Liệu
-        Category::create([
-        	'name'=>'',
-        	'parent_id' => 6
-        ]);
+
         Category::create([
         	'name'=>'Dầu Ăn',
         	'parent_id' => 6
