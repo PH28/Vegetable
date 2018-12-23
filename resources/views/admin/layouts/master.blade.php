@@ -395,7 +395,7 @@
             <nav class="sidebar-nav" id="sidebar-nav-scroller">
                 <ul class="nav">
                     <li class="nav-item nav-dropdown">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{{ route('admin.dashboard') }}">
                             <i class="mdi mdi-gauge"></i> Dashboard
                         </a>
 
@@ -416,7 +416,7 @@
                     </li>
 
                      <li class="nav-item nav-dropdown">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{{ route('admin.products.index') }}">
                             <i class="mdi mdi-food-variant"></i> Sản Phẩm
                         </a>
 

@@ -22,7 +22,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'username' => $faker->unique()->userName,
         'password' => $faker->password,
         'first_name' => $faker->firstName($gender),
-        'avatar' => $faker->url,
+        'avatar' => $faker->imageUrl(50, 50),
         'gender' => $gender,
         'dob' => $faker->dateTimeBetween($startDate = '-30 years', $endDate = '-10 years'),
         'phone'=> $faker->phoneNumber,

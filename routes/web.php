@@ -25,6 +25,7 @@ function () {
 	Route::get('dashboard', 'HomeController@index')->name('dashboard'); //tức là 'admin.dashboard'
 	Route::resource('categories', 'CategoryController');
 	Route::resource('users', 'UserController');
+	Route::resource('products', 'ProductController');
 });
 
 Auth::routes();

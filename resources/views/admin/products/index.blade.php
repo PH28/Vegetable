@@ -15,7 +15,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-sm-8">
-			<h3>Sản phẩm {{ $product->id }}. {{ $product->name }}</h3>
+			<h3>Danh sách Sản phẩm</h3>
 		</div>
 		<div class="col-sm-4">
 			<a href="{{ route('admin.products.create') }}" class="btn btn-primary pull-right">Thêm mới Sản phẩm</a>
@@ -38,6 +38,7 @@
 					</tr>
 				</thead>
 				<tbody>
+					@foreach($products as $product)
 					<tr>
 						<td>{{ $product->id }}</td>
 						<td>{{ $product->name }}</td>
@@ -47,10 +48,11 @@
 						<td>{{ $product->created_at }}</td>
 						<td><a href="{{ route('admin.products.edit', $product->id) }}">Edit</a></td>
 					</tr>
+					@endforeach
 				</tbody>
 			</table>
 		</div>
 	</div>
 </div>
 
-@endsection	
+@endsection
