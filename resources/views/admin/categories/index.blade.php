@@ -37,7 +37,7 @@
 				<!-- Lay tat ca danh muc -->
 				<tbody>
 					@foreach ($categories as $category)
-						@if($category->children->count())
+						@if($category->parent_id == null)
 							<tr>
 								<td>{{ $category->id }}</td>
 								<td>{{ $category->name }}</td>

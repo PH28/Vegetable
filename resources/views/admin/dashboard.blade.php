@@ -28,15 +28,6 @@
                             <div class="heading">Dashboard</div>
                         </div>
 
-                        <!-- <div class="text-center chart-full-toolbar">
-                            <button class="btn btn-theme btn-sm">1 Month</button>
-                            <button class="btn btn-dark btn-sm">3 Months</button>
-                            <button class="btn btn-theme btn-sm">6 Months</button>
-                            <button class="btn btn-theme btn-sm">1 Year</button>
-                        </div>
-                        <div class="ecom-widget-chart-text text-center">$3,500,000</div>
-                        <div class="chart-full-period text-center">Total Sales :- Aug 2017 - Oct 2017 </div>
-                        <canvas class="chart-full-canvas" id="canvas-full-chart-light"></canvas> -->
                     </div>
                 </div>
                 <!-- end ecom-widget-chart-full -->
@@ -233,20 +224,106 @@
                 <!-- end card users-count -->
             </div>
             <!-- end col -->
-            <div class="col-md-8">
-                <div class="card card-accent-theme">
+            <div class="col-md-4">
+                <div class=" card ecom-widget-payments card-accent-theme">
                     <div class="card-body">
-                        <div class="h5 text-dark">
-                            <strong>Transaction History</strong>
-                        </div>
-                        <small class="text-theme">BASED ON LAST 30 DAYS</small>
-                        <div id="area-chart"></div>
-                    </div>
+                        <h5>Payments</h5>
+                        <small>Top Payments Methods by Category (7 day)</small>
 
+                        <ul>
+                            <li class="credit">Credit
+                                <span>$329,99</span>
+                            </li>
+                            <li class="cash">Cash
+                                <span>$229,99</span>
+                            </li>
+                            <li class="other">Other
+                                <span>$69,99</span>
+                            </li>
+                        </ul>
+
+                        <ul>
+                            <li class="cash">Food
+                                <span>$229,99</span>
+                            </li>
+                            <li class="other">Petty
+                                <span>$69,99</span>
+                            </li>
+                        </ul>
+                        <div class="text-center">
+                            <button class="btn btn-theme btn-sm"> More Details</button>
+                        </div>
+                    </div>
+                    <!-- end card-body -->
                 </div>
-                <!-- end card -->
+                <!-- ecom-widget-payments  -->
             </div>
             <!-- end col -->
+            <div class="col-md-4 summary-widgets">
+
+                <div class="card card-accent-theme">
+
+                    <div class="card-body">
+                        <h6 class="text-theme">Summary</h6>
+                        <div class="row">
+                            <div class="col-md-6 summary-widget-1">
+                                <div class="card ">
+                                    <div class="card-body">
+                                        <div class="number">21</div>
+                                        <small>Active Users</small>
+                                        <div class="progress xs ">
+                                            <div class="progress-bar bg-info" style="width: 80%; " role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 summary-widget-1">
+                                <div class="card ">
+                                    <div class="card-body">
+                                        <div class="number">38</div>
+                                        <small>Over Due</small>
+                                        <div class="progress xs ">
+                                            <div class="progress-bar bg-danger" style="width: 60%; " role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 summary-widget-1">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="number">120</div>
+                                        <small>Sales</small>
+                                        <div class="progress xs ">
+                                            <div class="progress-bar bg-success" style="width: 60%; " role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 summary-widget-1">
+                                <div class="card ">
+                                    <div class="card-body">
+                                        <div class="number">12</div>
+                                        <small>expense</small>
+                                        <div class="progress xs ">
+                                            <div class="progress-bar bg-warning" style="width: 60%; " role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- end col summery widget -->
+                                        
         </div>
         <!-- end row -->
 
@@ -415,41 +492,7 @@
                 <!-- end sales-category-widget -->
             </div>
             <!-- end col -->
-            <div class="col-md-4">
-                <div class=" card ecom-widget-payments card-accent-theme">
-                    <div class="card-body">
-                        <h5>Payments</h5>
-                        <small>Top Payments Methods by Category (7 day)</small>
-
-                        <ul>
-                            <li class="credit">Credit
-                                <span>$329,99</span>
-                            </li>
-                            <li class="cash">Cash
-                                <span>$229,99</span>
-                            </li>
-                            <li class="other">Other
-                                <span>$69,99</span>
-                            </li>
-                        </ul>
-
-                        <ul>
-                            <li class="cash">Food
-                                <span>$229,99</span>
-                            </li>
-                            <li class="other">Petty
-                                <span>$69,99</span>
-                            </li>
-                        </ul>
-                        <div class="text-center">
-                            <button class="btn btn-theme btn-sm"> More Details</button>
-                        </div>
-                    </div>
-                    <!-- end card-body -->
-                </div>
-                <!-- ecom-widget-payments  -->
-            </div>
-            <!-- end col -->
+            
         </div>
         <!-- end row -->
 
@@ -606,98 +649,7 @@
             </div>
             <!-- end-col -->
 
-            <div class="col-md-5 summary-widgets">
-
-                <div class="card card-accent-theme">
-
-                    <div class="card-body">
-                        <h6 class="text-theme">Summary</h6>
-                        <div class="row">
-                            <div class="col-md-6 summary-widget-1">
-                                <div class="card ">
-                                    <div class="card-body">
-                                        <div class="number">21</div>
-                                        <small>Active Users</small>
-                                        <div class="progress xs ">
-                                            <div class="progress-bar bg-info" style="width: 80%; " role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 summary-widget-1">
-                                <div class="card ">
-                                    <div class="card-body">
-                                        <div class="number">38</div>
-                                        <small>Over Due</small>
-                                        <div class="progress xs ">
-                                            <div class="progress-bar bg-danger" style="width: 60%; " role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 summary-widget-1">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="number">120</div>
-                                        <small>Sales</small>
-                                        <div class="progress xs ">
-                                            <div class="progress-bar bg-success" style="width: 60%; " role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 summary-widget-1">
-                                <div class="card ">
-                                    <div class="card-body">
-                                        <div class="number">12</div>
-                                        <small>expense</small>
-                                        <div class="progress xs ">
-                                            <div class="progress-bar bg-warning" style="width: 60%; " role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 summary-widget-1">
-                                <div class="card ">
-                                    <div class="card-body">
-                                        <div class="number">21</div>
-                                        <small>Active Users</small>
-                                        <div class="progress xs ">
-                                            <div class="progress-bar bg-info" style="width: 10%; " role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 summary-widget-1">
-                                <div class="card ">
-                                    <div class="card-body">
-                                        <div class="number">10</div>
-                                        <small>Over Due</small>
-                                        <div class="progress xs ">
-                                            <div class="progress-bar bg-danger" style="width: 20%; " role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <!-- end col summery widget -->
+            
 
         </div>
         <!-- end row -->
