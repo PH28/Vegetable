@@ -24,15 +24,18 @@ class CategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:category,name'
+            'name' => 'required|unique:categories,name',
+           /* 'parent_id' => 'required'*/
         ];
 
     }
-    public function message()
+    public function messages()
     {
         return [
             'name.required' => ' Hãy nhập tên danh mục ',
-            'name.unique' => 'Tên danh mục này đã tồn tại'
+            'name.unique' => 'Tên danh mục này đã tồn tại',
+            /*'parent_id.required' => 'Hãy chọn Danh mục cha'*/
+
         ];
     }
 }
