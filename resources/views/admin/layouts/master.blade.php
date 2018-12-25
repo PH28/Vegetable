@@ -1,572 +1,387 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Admin| @yield('title')</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+        <meta content="Coderthemes" name="author" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-<head>
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.ico') }}">
+   
+        <!-- App css -->
+        <link href="{{ asset('admin/assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('admin/assets/css/icons.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('admin/assets/css/metismenu.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('admin/assets/css/style_cl.css') }}" rel="stylesheet" type="text/css" />
 
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="description" content="Admin, Dashboard, Bootstrap, Vegetable, GreenFood, Organic Food" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="{{ asset('admin/assets/js/modernizr.min.js') }}"></script>
 
-    <title>Vegetable - @yield('title')</title>
-
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('admin/img/favicon/apple-touch-icon.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('admin/img/favicon/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('admin/img/favicon/favicon-16x16.png') }}">
-    <link rel="manifest" href="{{ asset('admin/img/favicon/manifest.json') }}">
-    <link rel="mask-icon" href="{{ asset('admin/img/favicon/safari-pinned-tab.svg') }}" color="#5bbad5">
-    <meta name="theme-color" content="#ffffff">
-
-    <!-- fonts -->
-    <link rel="stylesheet" href="{{ asset('admin/fonts/md-fonts/css/materialdesignicons.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('admin/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
-    <!-- animate css -->
-    <link rel="stylesheet" href="{{ asset('admin/libs/animate.css/animate.min.css') }}">
-
-    <!-- jquery-loading -->
-    <link rel="stylesheet" href="{{ asset('admin/libs/jquery-loading/dist/jquery.loading.min.css') }}">
-    <!-- octadmin main style -->
-    <link id="pageStyle" rel="stylesheet" href="{{ asset('admin/css/style.css') }}">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
-
-</head>
-
-<body class="app sidebar-fixed aside-menu-off-canvas aside-menu-hidden header-fixed ">
-    <header class="app-header navbar">
-        <div class="hamburger hamburger--arrowalt-r navbar-toggler mobile-sidebar-toggler d-lg-none mr-auto">
-            <div class="hamburger-box">
-                <div class="hamburger-inner"></div>
-            </div>
-        </div>
-        <!-- end hamburger -->
-        <a class="navbar-brand" href="../../contents/dashboards/dashboard-sales.html">
-            <strong>Vegetable</strong>
-        </a>
-
-        <div class="hamburger hamburger--arrowalt-r navbar-toggler sidebar-toggler d-md-down-none mr-auto">
-            <div class="hamburger-box">
-                <div class="hamburger-inner"></div>
-            </div>
-        </div>
-        <!-- end hamburger -->
-
-        <div class="navbar-search">
-            <button type="submit" class="navbar-search-btn">
-                <i class="mdi mdi-magnify"></i>
-            </button>
-            <input type="text" class="navbar-search-input" placeholder="Find User a user, team, meeting ..">
-        </div>
-        <!-- end navbar-search -->
-
-        <ul class="nav navbar-nav ">
-            <li class="nav-item dropdown">
-                <a class="nav-link " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="mdi mdi-bell-ring"></i>
-                    <span class="notification hertbit"></span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right notification-list animated flipInY nicescroll-box">
-
-                    <div class="dropdown-header">
-                        <strong>Notification</strong>
-                        <span class="badge badge-pill badge-theme pull-right"> new 5</span>
-                    </div>
-                    <!--end dropdown-header -->
-
-                    <div class="wrap">
-
-                        <a href="#" class="dropdown-item">
-                            <div class="message-box">
-                                <div class="u-img">
-                                    <img src="http://via.placeholder.com/100x100" alt="user" />
-                                </div>
-                                <!-- end u-img -->
-                                <div class="u-text">
-                                    <div class="u-name">
-                                        <strong>A New Order has Been Placed </strong>
-                                    </div>
-                                    <small>2 minuts ago</small>
-                                </div>
-                                <!-- end u-text -->
-                            </div>
-                            <!-- end message-box -->
-                        </a>
-                        <!-- end dropdown-item -->
-
-                        <a href="#" class="dropdown-item">
-                            <div class="message-box">
-                                <div class="u-img">
-                                    <img src="http://via.placeholder.com/100x100" alt="user" />
-                                </div>
-                                <div class="u-text">
-                                    <div class="u-name">
-                                        <strong>Order Updated</strong>
-                                    </div>
-                                    <small>10 minuts ago</small>
-                                </div>
-                                <!-- end u-text -->
-                            </div>
-                            <!-- end message-box -->
-                        </a>
-                        <!-- end dropdown-item -->
-
-                        <a href="#" class="dropdown-item">
-                            <div class="message-box">
-                                <div class="u-img">
-                                    <img src="http://via.placeholder.com/100x100" alt="user" />
-                                </div>
-                                <!-- end u-img -->
-                                <div class="u-text">
-                                    <div class="u-name">
-                                        <strong>A New Order has Been Placed </strong>
-                                    </div>
-                                    <small>30 minuts ago</small>
-                                </div>
-                                <!-- end u-text -->
-                            </div>
-                            <!-- end message-box -->
-                        </a>
-                        <!-- end dropdown -->
-
-                        <a href="#" class="dropdown-item">
-                            <div class="message-box">
-                                <div class="u-img">
-                                    <img src="http://via.placeholder.com/100x100" alt="user" />
-                                </div>
-                                <!-- end u-img -->
-                                <div class="u-text">
-                                    <div class="u-name">
-                                        <strong> Order has Been Rated </strong>
-                                    </div>
-                                    <small>32 minuts ago</small>
-                                </div>
-                                <!-- end u-text -->
-                            </div>
-                            <!-- end message-box -->
-                        </a>
-                        <!-- end dropdown -->
-                    </div>
-                    <!-- end wrap -->
-
-                    <div class="dropdown-footer ">
-                        <a href="">
-                            <strong>See all messages (150) </strong>
-                        </a>
-                    </div>
-                    <!-- end dropdown-footer -->
-                </div>
-                <!-- end notification-list -->
-
-            </li>
-            <!-- end nav-item -->
-
-            <li class="nav-item ">
-                <a class="nav-link" href="#" data-toggle="dropdown">
-                    <i class="mdi mdi-forum"></i>
-                    <span class="notification hertbit"></span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right message-list animated flipInY nicescroll-box">
-
-                    <div class="dropdown-header">
-                        <strong>Messages</strong>
-                        <span class="badge badge-pill badge-theme pull-right"> new 15</span>
-                    </div>
-                    <!-- end dropdown-header -->
-                    <div class="wrap">
-
-                        <a href="#" class="dropdown-item">
-                            <div class="message-box">
-                                <div class="u-img">
-                                    <img src="http://via.placeholder.com/100x100" alt="user" />
-                                    <span class="notification online"></span>
-                                </div>
-                                <!-- end u-img -->
-                                <div class="u-text">
-                                    <div class="u-name">
-                                        <strong>Natalie Wall</strong>
-                                    </div>
-                                    <p class="text-muted">Anyways i would like just do it</p>
-                                    <small>2 minuts ago</small>
-                                </div>
-                                <!-- end u-text -->
-                            </div>
-                            <!-- end message-box -->
-                        </a>
-                        <!-- end dropdown-item -->
-
-                        <a href="#" class="dropdown-item">
-                            <div class="message-box">
-                                <div class="u-img">
-                                    <img src="http://via.placeholder.com/100x100" alt="user" />
-                                    <span class="notification offline"></span>
-                                </div>
-                                <!-- end u-img -->
-                                <div class="u-text">
-                                    <div class="u-name">
-                                        <strong>Steve johns</strong>
-                                    </div>
-                                    <p class="text-muted">There is Problem inside the Application</p>
-                                    <small>10 minuts ago</small>
-                                </div>
-                                <!-- end u-text -->
-                            </div>
-                            <!-- end message-box -->
-                        </a>
-                        <!-- end dropdown-item -->
-
-                        <a href="#" class="dropdown-item">
-                            <div class="message-box">
-                                <div class="u-img">
-                                    <img src="http://via.placeholder.com/100x100" alt="user" />
-                                    <span class="notification buzy"></span>
-                                </div>
-                                <!-- end u-img -->
-                                <div class="u-text">
-                                    <div class="u-name">
-                                        <strong>Taniya Jan</strong>
-                                    </div>
-                                    <p class="text-muted">Please Checkout The Attachment</p>
-                                    <small>30 minuts ago</small>
-                                </div>
-                                <!-- end u-text -->
-                            </div>
-                            <!-- end message-box -->
-                        </a>
-                        <!-- end dropdown-item -->
-
-                        <a href="#" class="dropdown-item">
-                            <div class="message-box">
-                                <div class="u-img">
-                                    <img src="http://via.placeholder.com/100x100" alt="user" />
-                                    <span class="notification away"></span>
-                                </div>
-                                <!-- end u-img -->
-                                <div class="u-text">
-                                    <div class="u-name">
-                                        <strong>Tim Johns</strong>
-                                    </div>
-                                    <!-- end u-name -->
-                                    <p class="text-muted">Anyways i would like just do it</p>
-                                    <small>32 minuts ago</small>
-                                </div>
-                                <!-- end u-text -->
-                            </div>
-                            <!-- end message-box -->
-                        </a>
-                        <!-- end dropdown-item -->
-                    </div>
-                    <!-- end wrap -->
-                    <div class="dropdown-footer ">
-                        <a href="">
-                            <strong>See all messages (150) </strong>
-                        </a>
-                    </div>
-                    <!-- end dropdown-footer -->
-                </div>
-                <!-- end message-list -->
-            </li>
-            <!-- end nav-item -->
+    </head>
 
 
-            <li class="nav-item ">
-                <a class="nav-link" href="#" data-toggle="dropdown">
-                    <i class="mdi mdi-cards"></i>
-                    <span class="notification hertbit"></span>
-                </a>
-                <!-- end navlink -->
-                <div class="dropdown-menu dropdown-menu-right task-list animated flipInY nicescroll-box">
+    <body>
 
-                    <div class="dropdown-header">
-                        <strong>Task List</strong>
-                        <span class="badge badge-pill badge-theme pull-right"> new 3</span>
-                    </div>
-                    <!-- end dropdown-header -->
-                    <div class="wrap">
-                        <a href="#" class="dropdown-item">
-                            <strong>Task 1</strong>
-                            <small class="pull-right">50% Complete</small>
-                            <div class="progress xs">
-                                <div class="progress-bar bg-danger" style="width: 50%" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+        <!-- Begin page -->
+        <div id="wrapper">
 
-                                </div>
-                            </div>
-                        </a>
-                        <!-- end dropdown-item -->
+            <!-- ========== Left Sidebar Start ========== -->
+            <div class="left side-menu">
 
-                        <a href="#" class="dropdown-item">
-                            <strong>Task 2</strong>
-                            <small class="pull-right">20% Complete</small>
+                <div class="slimscroll-menu" id="remove-scroll">
 
-                            <div class="progress xs">
-                                <div class="progress-bar bg-success" style="width: 20%" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-
-                                </div>
-                            </div>
-                        </a>
-
-                        <!-- end dropdown-item -->
-                        <a href="#" class="dropdown-item">
-                            <strong>Task 3</strong>
-                            <small class="pull-right">80% Complete</small>
-
-                            <div class="progress xs ">
-                                <div class="progress-bar bg-warning" style="width: 80%" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-
-                                </div>
-                            </div>
-                        </a>
-                        <!-- end dropdown-item -->
-
-                        <a href="#" class="dropdown-item">
-                            <strong>Task 4</strong>
-                            <small class="pull-right">60% Complete</small>
-
-                            <div class="progress xs ">
-                                <div class="progress-bar bg-info" style="width: 60%" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-
-                                </div>
-                            </div>
-                        </a>
-                        <!-- end dropdown-item -->
-                    </div>
-                    <!-- end wrap -->
-                    <div class="dropdown-footer ">
-                        <a href="">
-                            <strong>view all task (20) </strong>
-                        </a>
-                    </div>
-                    <!-- end dropdown-footer -->
-
-                </div>
-                <!-- dropdown-menu -->
-            </li>
-            <!-- end navitem -->
-
-            <li class="nav-item dropdown">
-                <a class="btn btn-round btn-theme btn-sm" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-
-                    <span class="">admin
-                        <i class="fa fa-arrow-down"></i>
-                    </span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right user-menu animated flipInY ">
-                    <div class="wrap">
-                        <div class="dw-user-box">
-                            <div class="u-img">
-                                <img src="http://via.placeholder.com/100x100" alt="user" />
-                            </div>
-                            <div class="u-text">
-                                <h5>Natalie Wall</h5>
-                                <p class="text-muted">wall@gmail.com</p>
-                                <a href="#" class="btn btn-round btn-theme btn-sm">View Profile</a>
-                            </div>
+                    <!-- User box -->
+                    <div class="user-box">
+                        <div class="user-img">
+                            <img src="assets/images/users/avatar-1.jpg" alt="user-img" title="Mat Helme" class="rounded-circle img-fluid">
                         </div>
-                        <!-- end dw-user-box -->
-
-                        <a class="dropdown-item" href="#">
-                            <i class="fa fa-user"></i> Profile</a>
-                        <a class="dropdown-item" href="#">
-                            <i class="fa fa-wrench"></i> Settings</a>
-
-                        <div class="divider"></div>
-
-                        <a class="dropdown-item" href="#">
-                            <i class="fa fa-lock"></i> Logout</a>
+                        <h5><a href="#">Maxine Kennedy</a> </h5>
+                        <p class="text-muted">Admin Head</p>
                     </div>
-                    <!-- end wrap -->
-                </div>
-                <!-- end dropdown-menu -->
-            </li>
-            <!-- end nav-item -->
 
+                    <!--- Sidemenu -->
+                    <div id="sidebar-menu">
 
-        </ul>
+                        <ul class="metismenu" id="side-menu">
 
-    </header>
-    <!-- end header -->
+                            <!--<li class="menu-title">Navigation</li>-->
 
-    <div class="app-body">
-        <div class="sidebar" id="sidebar">
-            <nav class="sidebar-nav" id="sidebar-nav-scroller">
-                <ul class="nav">
-                    <li class="nav-item nav-dropdown">
-                        <a class="nav-link" href="{{ route('admin.dashboard') }}">
-                            <i class="mdi mdi-gauge"></i> Dashboard
-                        </a>
-
-                    </li>
-
-
-                    </li>
-                    <li class="nav-item nav-dropdown">
-                        <a class="nav-link" href="{{ route('admin.categories.index') }}">
-                            <i class="mdi mdi-cube-outline"></i> Danh Mục Sản Phẩm</a>
-
-                       <!--  <ul class="nav-dropdown-items">
-                            <li class="nav-item">
-                                <a class="nav-link" href="../../contents/pages/pages-signup.html">Rau quả -Trái cây</a>
-                            </li>
-                        </ul> -->
-
-                    </li>
-
-                     <li class="nav-item nav-dropdown">
-                        <a class="nav-link" href="{{ route('admin.products.index') }}">
-                            <i class="mdi mdi-food-variant"></i> Sản Phẩm
-                        </a>
-
-                    </li>
-
-                    <li class="nav-item nav-dropdown">
-                        <a class="nav-link" href="#">
-                            <i class="mdi mdi-book-open-page-variant"></i> Đơn Đặt Hàng
-                        </a>
-
-                    </li>
-
-                    <li class="nav-item nav-dropdown">
-                        <a class="nav-link" href="{{ route('admin.users.index') }}">
-                            <i class="mdi mdi-account-star"></i> Khách Hàng
-                        </a>
-
-                    </li>
-
-                    <li class="nav-item nav-dropdown">
-                        <a class="nav-link" href="#">
-                            <i class="mdi mdi-newspaper"></i> Tin Tức
-                        </a>
-
-                    </li>
-
-
-                    <li class="nav-title">
-                        Forms Tables & widgets
-                    </li>
-
-                    <li class="nav-item nav-dropdown">
-                        <a class="nav-link nav-dropdown-toggle" href="#">
-                            <i class="mdi mdi-file-document"></i> Forms</a>
-                        <ul class="nav-dropdown-items">
-                            <li class="nav-item">
-                                <a class="nav-link" href="../../contents/forms/forms-form-layouts.html"> Form Layouts </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="../../contents/forms/forms-form-elements.html"> Form Elements</a>
+                            <li>
+                                <a href="{{ route('admin.dashboard') }}">
+                                    <i class="fi-air-play"></i><span> Dashboard </span>
+                                </a>
                             </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="../../contents/forms/forms-form-validation.html"> Form Validation</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="../../contents/forms/forms-custom-elements.html"> Custom Elements </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="../../contents/forms/forms-form-plugins.html"> Form Plugins </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="../../contents/forms/forms-form-masks.html"> Form Masks </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="../../contents/forms/forms-form-file-upload.html"> File Upload </a>
-                            </li>
-
-                            <li class="nav-item nav-dropdown">
-                                <a class="nav-link nav-dropdown-toggle" href="#"> Editors </a>
-                                <ul class="nav-dropdown-items">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="../../contents/forms/forms-form-editors-summernote.html"> Summernote</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="../../contents/forms/forms-form-editors-markdown.html"> Markdown</a>
-                                    </li>
+                            <li>
+                                <a href="javascript: void(0);"><i class="fi-layers"></i> <span> Quản Lý Danh Mục </span> <span class="menu-arrow"></span></a>
+                                <ul class="nav-second-level" aria-expanded="false">
+                                    <li><a href="{{ route('admin.categories.index') }}">Danh Sách Danh Mục</a></li>
+                                    <li><a href="{{ route('admin.categories.create') }}">Thêm Danh Mục</a></li>
                                 </ul>
                             </li>
-                        </ul>
-                    </li>
 
+                            <li>
+                                <a href="javascript: void(0);"><i class="dripicons-rocket"></i><span> Quản Lý Sản Phẩm </span> <span class="menu-arrow"></span></a>
+                                <ul class="nav-second-level" aria-expanded="false">
+                                    <li><a href="{{ route('admin.products.index') }}">Danh Sách Sản Phẩm</a></li>
+                                    <li><a href="{{ route('admin.products.create') }}">Thêm Sản Phẩm</a></li>
+                                </ul>
+                            </li>
 
-                    <li class="nav-item nav-dropdown">
-                        <a class="nav-link nav-dropdown-toggle" href="#">
-                            <i class="mdi mdi-table-large"></i> Tables</a>
-                        <ul class="nav-dropdown-items">
-                            <li class="nav-item">
-                                <a class="nav-link" href="../../contents/tables/tables-basic-table.html"> Basic Tables</a>
+                            <li>
+                                <a href="javascript: void(0);"><i class="fa fa-address-book"></i><span> Quản Lý Người Dùng </span> <span class="menu-arrow"></span></a>
+                                <ul class="nav-second-level" aria-expanded="false">
+                                    <li><a href="{{ route('admin.users.index') }}">Danh Sách Người Dùng</a></li>
+                                    <li><a href="{{ route('admin.users.create') }}">Thêm Người Dùng</a></li>
+                                </ul>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="../../contents/tables/tables-table-layouts.html"> Table Layouts</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="../../contents/tables/tables-data-table.html"> Data Tables</a>
-                            </li>
-                        </ul>
-                    </li>
 
-                    <li class="nav-item nav-dropdown">
-                        <a class="nav-link nav-dropdown-toggle" href="#">
-                            <i class="mdi mdi-widgets"></i> Widgets</a>
-                        <ul class="nav-dropdown-items">
-                            <li class="nav-item">
-                                <a class="nav-link" href="../../contents/widgets/widgets-satistics.html"> Satistics Widget </a>
+                            <li>
+                                <a href="javascript: void(0);"><i class="fa fa-shopping-basket"></i><span> Quản Lý Đơn Hàng </span> <span class="menu-arrow"></span></a>
+                                <ul class="nav-second-level" aria-expanded="false">
+                                    <li><a href="layouts-menucollapsed.html">Danh Sách Đơn Hàng</a></li>
+                                    <li><a href="layouts-small-menu.html">Thêm Đơn Hàng</a></li>
+                                </ul>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="../../contents/widgets/widgets-data.html"> Data Widget</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="../../contents/widgets/widgets-chart.html"> Chart Widget</a>
-                            </li>
+
 
                         </ul>
-                    </li>
+
+                    </div>
+                    <!-- Sidebar -->
+
+                    <div class="clearfix"></div>
+
+                </div>
+                <!-- Sidebar -left -->
+
+            </div>
+            <!-- Left Sidebar End -->
 
 
-                </ul>
-            </nav>
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+
+            <div class="content-page">
+
+                <!-- Top Bar Start -->
+                <div class="topbar">
+
+                    <nav class="navbar-custom">
+
+                        <!-- LOGO -->
+                        <div class="logo-box">
+                            <a href="index.html" class="logo">
+                                <img src="{{ asset('admin/assets/images/logo_sm.png') }}" alt="" height="60">
+                            </a>
+                        </div>
+
+                        <ul class="list-unstyled topbar-right-menu float-right mb-0">
+
+                            <li class="hide-phone app-search">
+                                <form>
+                                    <input type="text" placeholder="Search..." class="form-control">
+                                    <button type="submit"><i class="fa fa-search"></i></button>
+                                </form>
+                            </li>
+
+                            <li class="dropdown notification-list">
+                                <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button"
+                                   aria-haspopup="false" aria-expanded="false">
+                                    <i class="fi-bell noti-icon"></i>
+                                    <span class="badge badge-danger badge-pill noti-icon-badge">4</span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated dropdown-lg">
+
+                                    <!-- item-->
+                                    <div class="dropdown-item noti-title">
+                                        <h5 class="m-0"><span class="float-right"><a href="" class="text-dark"><small>Clear All</small></a> </span>Notification</h5>
+                                    </div>
+
+                                    <div class="slimscroll" style="max-height: 230px;">
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                            <div class="notify-icon bg-success"><i class="mdi mdi-comment-account-outline"></i></div>
+                                            <p class="notify-details">Caleb Flakelar commented on Admin<small class="text-muted">1 min ago</small></p>
+                                        </a>
+
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                            <div class="notify-icon bg-info"><i class="mdi mdi-account-plus"></i></div>
+                                            <p class="notify-details">New user registered.<small class="text-muted">5 hours ago</small></p>
+                                        </a>
+
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                            <div class="notify-icon bg-danger"><i class="mdi mdi-heart"></i></div>
+                                            <p class="notify-details">Carlos Crouch liked <b>Admin</b><small class="text-muted">3 days ago</small></p>
+                                        </a>
+
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                            <div class="notify-icon bg-warning"><i class="mdi mdi-comment-account-outline"></i></div>
+                                            <p class="notify-details">Caleb Flakelar commented on Admin<small class="text-muted">4 days ago</small></p>
+                                        </a>
+
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                            <div class="notify-icon bg-purple"><i class="mdi mdi-account-plus"></i></div>
+                                            <p class="notify-details">New user registered.<small class="text-muted">7 days ago</small></p>
+                                        </a>
+
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                            <div class="notify-icon bg-custom"><i class="mdi mdi-heart"></i></div>
+                                            <p class="notify-details">Carlos Crouch liked <b>Admin</b><small class="text-muted">13 days ago</small></p>
+                                        </a>
+                                    </div>
+
+                                    <!-- All-->
+                                    <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">
+                                        View all <i class="fi-arrow-right"></i>
+                                    </a>
+
+                                </div>
+                            </li>
+
+                            <li class="dropdown notification-list">
+                                <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button"
+                                   aria-haspopup="false" aria-expanded="false">
+                                    <i class="fi-speech-bubble noti-icon"></i>
+                                    <span class="badge badge-custom badge-pill noti-icon-badge">6</span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated dropdown-lg">
+
+                                    <!-- item-->
+                                    <div class="dropdown-item noti-title">
+                                        <h5 class="m-0"><span class="float-right"><a href="" class="text-dark"><small>Clear All</small></a> </span>Chat</h5>
+                                    </div>
+
+                                    <div class="slimscroll" style="max-height: 230px;">
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                            <div class="notify-icon"><img src="assets/images/users/avatar-2.jpg" class="img-fluid rounded-circle" alt="" /> </div>
+                                            <p class="notify-details">Cristina Pride</p>
+                                            <p class="text-muted font-13 mb-0 user-msg">Hi, How are you? What about our next meeting</p>
+                                        </a>
+
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                            <div class="notify-icon"><img src="assets/images/users/avatar-3.jpg" class="img-fluid rounded-circle" alt="" /> </div>
+                                            <p class="notify-details">Sam Garret</p>
+                                            <p class="text-muted font-13 mb-0 user-msg">Yeah everything is fine</p>
+                                        </a>
+
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                            <div class="notify-icon"><img src="assets/images/users/avatar-4.jpg" class="img-fluid rounded-circle" alt="" /> </div>
+                                            <p class="notify-details">Karen Robinson</p>
+                                            <p class="text-muted font-13 mb-0 user-msg">Wow that's great</p>
+                                        </a>
+
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                            <div class="notify-icon"><img src="assets/images/users/avatar-5.jpg" class="img-fluid rounded-circle" alt="" /> </div>
+                                            <p class="notify-details">Sherry Marshall</p>
+                                            <p class="text-muted font-13 mb-0 user-msg">Hi, How are you? What about our next meeting</p>
+                                        </a>
+
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                            <div class="notify-icon"><img src="assets/images/users/avatar-6.jpg" class="img-fluid rounded-circle" alt="" /> </div>
+                                            <p class="notify-details">Shawn Millard</p>
+                                            <p class="text-muted font-13 mb-0 user-msg">Yeah everything is fine</p>
+                                        </a>
+                                    </div>
+
+                                    <!-- All-->
+                                    <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">
+                                        View all <i class="fi-arrow-right"></i>
+                                    </a>
+
+                                </div>
+                            </li>
+
+                            <li class="dropdown notification-list">
+                                <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button"
+                                   aria-haspopup="false" aria-expanded="false">
+                                    <img src="assets/images/users/avatar-1.jpg" alt="user" class="rounded-circle"> <span class="ml-1">Maxine K <i class="mdi mdi-chevron-down"></i> </span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated profile-dropdown ">
+                                    <!-- item-->
+                                    <div class="dropdown-item noti-title">
+                                        <h6 class="text-overflow m-0">Welcome !</h6>
+                                    </div>
+
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                        <i class="fi-head"></i> <span>My Account</span>
+                                    </a>
+
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                        <i class="fi-cog"></i> <span>Settings</span>
+                                    </a>
+
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                        <i class="fi-help"></i> <span>Support</span>
+                                    </a>
+
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                        <i class="fi-lock"></i> <span>Lock Screen</span>
+                                    </a>
+
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                        <i class="fi-power"></i> <span>Logout</span>
+                                    </a>
+
+                                </div>
+                            </li>
+
+                        </ul>
+
+                        <ul class="list-inline menu-left mb-0">
+                            <li class="float-left">
+                                <button class="button-menu-mobile open-left">
+                                    <i class="dripicons-menu"></i>
+                                </button>
+                            </li>
+                            <li>
+                                <div class="page-title-box">
+                                    <h4 class="page-title">Vegetable </h4>
+                                </div>
+                            </li>
+
+                        </ul>
+
+                    </nav>
+
+                </div>
+                <!-- Top Bar End -->
+
+
+
+                <!-- Start Page content -->
+                <div class="content">
+                    <ul class="list-inline menu-left mb-0">
+                        <li class="float-left">
+                            <button class="button-menu-mobile open-left disable-btn">
+                                <i class="dripicons-menu"></i>
+                            </button>
+                        </li>
+                        <li>
+                            <div class="page-title-box">
+                                <h4 class="page-title">@yield('page') </h4>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#">Highdmin</a></li>
+                                    <li class="breadcrumb-item"><a href="#">Apps</a></li>
+                                    <li class="breadcrumb-item active">@yield('page')</li>
+                                </ol>
+                            </div>
+                        </li>
+
+                    </ul>
+                    <hr>
+                    @yield('content')
+                    
+
+                </div> <!-- content -->
+
+                <footer class="footer text-right">
+                    2018 © Vegetable.com - fresh Food
+                </footer>
+
+            </div>
+
+
+            <!-- ============================================================== -->
+            <!-- End Right content here -->
+            <!-- ============================================================== -->
+
 
         </div>
-        <!-- end sidebar -->
+        <!-- END wrapper -->
 
-        <main class="main">
+        <!-- jQuery  -->
+        <script src="{{ asset('admin/assets/js/jquery.min.js') }}"></script>
+        <script src="{{ asset('admin/assets/js/popper.min.js') }}"></script>
+        <script src="{{ asset('admin/assets/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('admin/assets/js/metisMenu.min.js') }}"></script>
+        <script src="{{ asset('admin/assets/js/waves.js') }}"></script>
+        <script src="{{ asset('admin/assets/js/jquery.slimscroll.js') }}"></script>
 
-            @yield('content')
-        </main>
-        <!-- end main -->
-
+        <!-- Flot chart -->
+        <script src="{{ asset('admin/plugins/flot-chart/jquery.flot.min.js') }}"></script>
+        <script src="{{ asset('admin/plugins/flot-chart/jquery.flot.time.js') }}"></script>
+        <script src="{{ asset('admin/plugins/flot-chart/jquery.flot.tooltip.min.js') }}"></script>
+        <script src="{{ asset('admin/plugins/flot-chart/jquery.flot.resize.js') }}"></script>
+        <script src="{{ asset('admin/plugins/flot-chart/jquery.flot.pie.js') }}"></script>
+        <script src="{{ asset('admin/plugins/flot-chart/jquery.flot.crosshair.js') }}"></script>
+        <script src="{{ asset('admin/plugins/flot-chart/curvedLines.js') }}"></script>
+        <script src="{{ asset('admin/plugins/flot-chart/jquery.flot.axislabels.js') }}"></script>
         
-    </div>
-    <!-- end app-body -->
+        
+        
+        
+        <!-- KNOB JS -->
+        <!--[if IE]>
+        <script type="text/javascript" src="../plugins/jquery-knob/excanvas.js"></script>
+        <![endif]-->
+        <script src="{{ asset('admin/plugins/jquery-knob/jquery.knob.js') }}"></script>
 
-    <footer class="app-footer">
-        <a href="#" class="text-theme">Vegetable Admin</a> &copy; 2018 Vegetable.
-    </footer>
-    
-    <!-- Bootstrap and necessary plugins -->
-    <script src="{{ asset('admin/libs/jquery/dist/jquery.min.js') }}"></script>
-    <script src="{{ asset('admin/libs/popper.js/dist/umd/popper.min.js') }}"></script>
-    <script src="{{ asset('admin/ibs/bootstrap/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('admin/libs/PACE/pace.min.js') }}"></script>
-    <script src="{{ asset('admin/libs/chart.js/dist/Chart.min.js') }}"></script>
-    <script src="{{ asset('admin/libs/nicescroll/jquery.nicescroll.min.js') }}"></script>
+        <!-- Dashboard Init -->
+        <script src="{{ asset('admin/assets/pages/jquery.dashboard.init.js') }}"></script>
 
-    <script src="{{ asset('admin/libs/jquery-knob/dist/jquery.knob.min.js') }}"></script>
+        <!-- App js -->
+        <script src="{{ asset('admin/assets/js/jquery.core.js') }}"></script>
+        <script src="{{ asset('admin/assets/js/jquery.app.js') }}"></script>
 
-    <!--morris js -->
-    <script src="{{ asset('admin/libs/raphael/raphael.min.js') }}"></script>
-    <script src="{{ asset('admin/libs/charts-morris-chart/morris.min.js') }}"></script>
-
-    <!-- jquery-loading -->
-    <script src="{{ asset('admin/libs/jquery-loading/dist/jquery.loading.min.js') }}"></script>
-    <!-- octadmin Main Script -->
-    <script src="{{ asset('admin/js/app.js') }}"></script>
-
-    <!-- dashboard-ecom script -->
-    <script src="{{ asset('admin/js/dashboard-ecom-widgets.js') }}"></script>
-
-</body>
-
+    </body>
 </html>

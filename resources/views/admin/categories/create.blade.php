@@ -2,17 +2,10 @@
 
 @section('title', 'List Categories')
 
+@section('page', 'Categories')
+
 @section('content')
 
-<ol class="breadcrumb bc-colored bg-theme" id="breadcrumb">
-    <li class="breadcrumb-item ">
-        <a href="">Home</a>
-    </li>
-    <li class="breadcrumb-item">
-        <a href="#">Admin</a>
-    </li>
-    <li class="breadcrumb-item active">Danh Mục Sản Phẩm</li>
-</ol>
 
 <div class="container">
 	<div class="row">
@@ -27,9 +20,9 @@
 				</div>
 				
 				@if($errors->has('name'))
-				<div class="alert alert-danger">
-					<span class="strong">{{ $errors->first('name') }}</span>
-				</div>
+					<div class="alert alert-danger">
+						<span class="strong">{{ $errors->first('name') }}</span>
+					</div>
 				@endif
 
 				<div class="form-group">

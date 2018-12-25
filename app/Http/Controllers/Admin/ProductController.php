@@ -16,7 +16,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with('images')->get();
+        $products = Product::with('images')->paginate(10);
         return view('admin.products.index', compact('products'));
     }
 
@@ -45,7 +45,7 @@ class ProductController extends Controller
         {
             $imageData = [];     // áp dụng để upload multi, 1 thì ko cần
             $image = $request->file('image');
-            $name = $image->getClientOriginalName();  //lấy tên
+            $name = time().$image->getClientOriginalName();  //lấy tên
             $image->move('images/products', $name);    // di chuyển từ temp sang folder lưu trữ
             $path = 'images/products/'.$name;            // lấy đường dẫn
             $imageData[] = [
@@ -101,7 +101,7 @@ class ProductController extends Controller
         if ($request->hasFile('image')) 
         {
             $image = $request->file('image');
-            $name = $image->getClientOriginalName();  //lấy tên
+            $name = time().$image->getClientOriginalName();  //lấy tên
             $image->move('images/products', $name);    // di chuyển từ temp sang folder lưu trữ
             $path = 'images/products/'.$name;            // lấy đường dẫn
             $imageData = [

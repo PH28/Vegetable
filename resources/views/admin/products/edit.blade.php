@@ -44,7 +44,7 @@
 				<div class="form-group">
 					<label for="">Thêm Hình Ảnh</label>
 					@foreach($images as $image)
-					<img src="{{ asset($image->path) }}" alt="">
+					<img style="height: 300px" src="{{ asset($image->path) }}" alt="">
 					@endforeach
 					<input name="image" type="file" class="form-control" id="" placeholder="Input field">
 				</div>

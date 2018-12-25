@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Role;
+use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
@@ -26,7 +28,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        $roles = Role::all();
+        return view('admin.users.create', compact('roles'));
     }
 
     /**
@@ -35,9 +38,18 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        $data = $request->all();
+        if ($request->hasFile('avatar')) {
+            $file = $request->file('avatar');
+            $name = time().$file->getClientOriginalName();
+            $file->move('images/avatars', $name);
+            $avatar = 'images/avatars/'.$name;
+            $data = $request->all();
+            $data['avatar'] = $avatar;
+        }
+
+       
         User::create($data);
         return redirect()->route('admin.users.index');
     }
@@ -61,7 +73,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('admin.users.edit', compact('user'));
+        $roles = Role::all();
+        return view('admin.users.edit', compact('user', 'roles'));
     }
 
     /**
