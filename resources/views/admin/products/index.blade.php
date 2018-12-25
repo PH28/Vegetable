@@ -2,16 +2,11 @@
 
 @section('title', 'List Products')
 
+@section('page', 'Products')
+
 @section('content')
-<ol class="breadcrumb bc-colored bg-theme" id="breadcrumb">
-    <li class="breadcrumb-item ">
-        <a href="">Home</a>
-    </li>
-    <li class="breadcrumb-item">
-        <a href="#">Admin</a>
-    </li>
-    <li class="breadcrumb-item active">Products</li>
-</ol>
+
+
 <div class="container">
 	<div class="row">
 		<div class="col-sm-8">
@@ -52,6 +47,14 @@
 				</tbody>
 			</table>
 		</div>
+	</div>
+</div>
+
+<div  class="container-fluid">
+	<div class="row">
+		<div class="col-sm-12">
+	       {{$products->links()}}
+	    </div>
 	</div>
 </div>
 

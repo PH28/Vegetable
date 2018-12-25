@@ -1,6 +1,8 @@
 @extends('admin.layouts.master')
 
 @section('title', 'Add New Product')
+@section('page', 'Products')
+
 @section('content')
 <div class="container-fluid">
 	<div class="row">
@@ -47,7 +49,6 @@
 		</div>
 	</div>
 </div>
-
 
 
 @endsection

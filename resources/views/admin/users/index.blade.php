@@ -1,17 +1,21 @@
 @extends('admin.layouts.master')
 
 @section('title', 'List User')
-
+@section('page', 'Users')
 @section('content')
-<ol class="breadcrumb bc-colored bg-theme" id="breadcrumb">
-    <li class="breadcrumb-item ">
-        <a href="">Home</a>
-    </li>
-    <li class="breadcrumb-item">
-        <a href="#">Admin</a>
-    </li>
-    <li class="breadcrumb-item active">Users</li>
-</ol>
+
+
+<div class="row">
+	<div class="col-sm-8">
+		<h3>Danh sách Khách Hàng</h3>
+	</div>
+	<div class="col-sm-4">
+		<a href="{{ route('admin.users.create') }}" class="btn btn-primary pull-right">Thêm mới User</a>
+	</div>
+</div>
+
+
+
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-sm-12">
@@ -27,6 +31,7 @@
 						<th>Giới tính</th>
 						<th>Ngày Sinh</th>
 						<th>Ngày Đăng ký</th>
+						<th>Action</th>
 						
 					</tr>
 				</thead>
@@ -38,15 +43,23 @@
 						<td>{{ $user->address }}</td>
 						<td>{{ $user->phone }}</td>
 						<td>{{ $user->email }}</td>
-						<td><img src="{{ $user->avatar }}" alt=""></td>
+						<td><img style="height: 50px" src="{{ asset($user->avatar) }}" alt=""></td>
 						<td>{{ $user->gender }}</td>
 						<td>{{ $user->dob }}</td>
 						<td>{{ $user->created_at }}</td>
+						<td><a href="{{ route('admin.users.edit', $user->id) }}">Edit</a></td>
 					</tr>
 					@endforeach
 				</tbody>
 			</table>
 		</div>
+	</div>
+</div>
+<div  class="container-fluid p-y-md">
+	<div class="row">
+		<div class="col-sm-12">
+	       {{$users->links()}}
+	    </div>
 	</div>
 </div>
 
