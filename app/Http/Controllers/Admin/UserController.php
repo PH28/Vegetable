@@ -17,8 +17,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::where('role_id', 2)->paginate(5);
-        return view('admin.users.index', compact('users'));
+        $users = User::where('role_id', 2)->orderBy('created_at', 'desc')->paginate(6);
+        $admins = User::where('role_id', 1)->paginate(6);
+        return view('admin.users.index', compact('users', 'admins'));
     }
 
     /**
@@ -46,6 +47,7 @@ class UserController extends Controller
             $file->move('images/avatars', $name);
             $avatar = 'images/avatars/'.$name;
             $data = $request->all();
+            $data['password'] = bcrypt($request->password);
             $data['avatar'] = $avatar;
         }
 
@@ -97,6 +99,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
     }
 }

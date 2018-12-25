@@ -20,14 +20,15 @@ $factory->define(App\User::class, function (Faker $faker) {
     return [
         'email' => $faker->unique()->safeEmail,
         'username' => $faker->unique()->userName,
-        'password' => $faker->password,
+        'password' => bcrypt($faker->password),
         'first_name' => $faker->firstName($gender),
-        'avatar' => $faker->imageUrl(50, 50),
+        'avatar' => $faker->imageUrl(200, 200),
         'gender' => $gender,
-        'dob' => $faker->dateTimeBetween($startDate = '-30 years', $endDate = '-10 years'),
+        'dob' => $faker->date($format = 'Y-m-d', $min = '-40 years', $max = '-10 years'),
         'phone'=> $faker->phoneNumber,
         'address' => $faker->address,
         'role_id' => 2,
+        'status' => 1,
         'remember_token' => str_random(10),
     ];
 });

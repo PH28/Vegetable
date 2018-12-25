@@ -117,6 +117,19 @@
                                     </div>
                                 </div>
                                 
+                                <div class="form-group row">
+                                    <label class="col-2 col-form-label">Status</label>
+                                    <div class="col-10">
+                                        <div class="radio radio-info form-check-inline">
+                                            <input type="radio" id="status" value="1" name="status" checked>
+                                            <label for="inlineRadio1"> Active </label>
+                                        </div>
+                                        <div class="radio form-check-inline">
+                                            <input type="radio" id="status" value="2" name="status">
+                                            <label for="inlineRadio2"> In Active </label>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="form-group row">
                                     <label class="col-2 col-form-label">Giới Tính</label>

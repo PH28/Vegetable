@@ -9,8 +9,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
         <!-- App favicon -->
-        <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.ico') }}">
-   
+        <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.ico') }}">       
+  
         <!-- App css -->
         <link href="{{ asset('admin/assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('admin/assets/css/icons.css') }}" rel="stylesheet" type="text/css" />
@@ -320,8 +320,8 @@
                             <div class="page-title-box">
                                 <h4 class="page-title">@yield('page') </h4>
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#">Highdmin</a></li>
-                                    <li class="breadcrumb-item"><a href="#">Apps</a></li>
+                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="#">Admin</a></li>
                                     <li class="breadcrumb-item active">@yield('page')</li>
                                 </ol>
                             </div>
@@ -335,7 +335,7 @@
                 </div> <!-- content -->
 
                 <footer class="footer text-right">
-                    2018 © Vegetable.com - fresh Food
+                    2018 © Vegetable.com - Fresh Food
                 </footer>
 
             </div>
