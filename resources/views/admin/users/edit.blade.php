@@ -15,7 +15,7 @@
         </div>
         <div class="col-9">
             <div class="card-box">
-                <h1 class="m-t-0 header-title">Create User Form </h1>
+                <h1 class="m-t-0 header-title">Edit User Form </h1>
                 <div class="row">
                     <div class="col-12">
                         <div class="p-20">

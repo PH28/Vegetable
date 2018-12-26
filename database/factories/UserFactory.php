@@ -17,12 +17,13 @@ use App\Role;
 $factory->define(App\User::class, function (Faker $faker) {
 	
 	$gender = $faker->randomElement(['male', 'female']);
+
     return [
         'email' => $faker->unique()->safeEmail,
         'username' => $faker->unique()->userName,
         'password' => bcrypt($faker->password),
         'first_name' => $faker->firstName($gender),
-        'avatar' => $faker->imageUrl(200, 200),
+        'avatar' => 'images/avatars/'.$faker->image('public/images/avatars',300,300, null, false) ,
         'gender' => $gender,
         'dob' => $faker->date($format = 'Y-m-d', $min = '-40 years', $max = '-10 years'),
         'phone'=> $faker->phoneNumber,

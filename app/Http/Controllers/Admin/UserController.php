@@ -90,8 +90,11 @@ class UserController extends Controller
      */
     public function update(UserEditRequest $request, User $user)
     {
-        $data = $request->all();
-        $data['password'] = bcrypt($request->password);
+        $data = $request->except('password');
+        if (trim($request->password)) {
+            $data['password'] = bcrypt($request->password);
+        }
+        
         if ($request->hasFile('avatar')) {
             $file = $request->file('avatar');
             $name = time().$file->getClientOriginalName();
@@ -100,7 +103,8 @@ class UserController extends Controller
             $data['avatar'] = $avatar;
         }
         $user->update($data);
-        return redirect()->route('admin.users.show');
+        return redirect()->route('admin.users.show',compact('user'));
+
     }
 
     /**
@@ -109,8 +113,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
+        unlink($user->avatar);
+        $user->delete();
+        return redirect()->route('admin.users.index');
         
     }
 }
