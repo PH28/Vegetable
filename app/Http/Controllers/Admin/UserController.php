@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\Role;
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\UserEditRequest;
+
 
 class UserController extends Controller
 {
@@ -41,13 +43,13 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
+        $data = $request->all();
+        $data['password'] = bcrypt($request->password);
         if ($request->hasFile('avatar')) {
             $file = $request->file('avatar');
             $name = time().$file->getClientOriginalName();
             $file->move('images/avatars', $name);
             $avatar = 'images/avatars/'.$name;
-            $data = $request->all();
-            $data['password'] = bcrypt($request->password);
             $data['avatar'] = $avatar;
         }
 
@@ -86,9 +88,19 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserEditRequest $request, User $user)
     {
-        
+        $data = $request->all();
+        $data['password'] = bcrypt($request->password);
+        if ($request->hasFile('avatar')) {
+            $file = $request->file('avatar');
+            $name = time().$file->getClientOriginalName();
+            $file->move('images/avatars', $name);
+            $avatar = 'images/avatars/'.$name;
+            $data['avatar'] = $avatar;
+        }
+        $user->update($data);
+        return redirect()->route('admin.users.show');
     }
 
     /**
