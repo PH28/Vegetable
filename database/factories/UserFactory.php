@@ -17,6 +17,12 @@ use App\Role;
 $factory->define(App\User::class, function (Faker $faker) {
 	
 	$gender = $faker->randomElement(['male', 'female']);
+    
+    $directory='public/images/avatars';
+    if (!File::isDirectory($directory)) {
+
+       $result = File::makeDirectory($directory, 0775, true);
+    }
 
     return [
         'email' => $faker->unique()->safeEmail,
