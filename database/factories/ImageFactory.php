@@ -7,7 +7,7 @@ $factory->define(App\Image::class, function (Faker $faker) {
 	$productIds = Product::pluck('id');
     return [
         'name'=>$faker->name,
-        'path'=>$faker->imageUrl(240, 320),
+        'path'=>'images/products/'.$faker->image('public/images/products',300,300, null, false),
         
     ];
 });

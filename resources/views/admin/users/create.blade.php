@@ -135,11 +135,11 @@
                                     <label class="col-2 col-form-label">Giới Tính</label>
                                     <div class="col-10">
                                         <div class="radio radio-info form-check-inline">
-									        <input type="radio" id="gender" value="1" name="gender" checked>
+									        <input type="radio" id="gender" value="male" name="gender" checked>
 									        <label for="inlineRadio1"> Nam </label>
 									    </div>
 									    <div class="radio form-check-inline">
-									        <input type="radio" id="gender" value="2" name="gender">
+									        <input type="radio" id="gender" value="female" name="gender">
 									        <label for="inlineRadio2"> Nữ </label>
 									    </div>
                                     </div>

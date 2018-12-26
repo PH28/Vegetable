@@ -86,6 +86,10 @@
                                 </ul>
                             </li>
 
+                            <li>
+                                <a href="javascript: void(0);"><i class="fa fa-comments"></i><span> Quản Lý Comment </span> <span class=""></span></a>
+                            </li>
+
 
                         </ul>
 
