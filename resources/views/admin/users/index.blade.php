@@ -63,7 +63,7 @@
 
             <div class="member-card pt-2 pb-2">
                 <div class="thumb-lg member-thumb m-b-10 mx-auto">
-                    <img src="{{ asset($user->avatar) }}" class="rounded-circle img-thumbnail" alt="profile-image">
+                    <img src="{{ asset($user->avatar ? $user->avatar : 'http://via.placeholder.com/200'  ) }}" class="rounded-circle img-thumbnail" alt="profile-image">
                 </div>
                 
 
@@ -76,10 +76,13 @@
                     <p class="text-muted">Phone <span> | </span> <span> <a href="#" class="text-pink">{{ $user->phone }}</a> </span></p>
                 </div>
                 <div class="row">
-                	<div class="col-6">
+                	<div class="col-3">
                 		<p class="text-muted">ID <span> | </span> <span> <a href="#" class="text-pink">{{ $user->id }}</a> </span></p>
                 	</div>
-                	<div class="col-6">
+                    <div class="col-4">
+                        <p class="text-muted">Status <span> | </span> <span> <a href="#" class="text-pink">{{ $user->status==1 ? 'Active' : 'In Active' }}</a> </span></p>
+                    </div>
+                	<div class="col-5">
                 		<p class="text-muted">Username <span> | </span> <span> <a href="#" class="text-pink">{{ $user->username }}</a> </span></p>
                 	</div>
                 </div>
@@ -94,10 +97,17 @@
 
                 <ul class="social-links list-inline m-t-20">
                     <li class="list-inline-item">
-                        <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="{{ route('admin.users.edit', $user->id) }}" data-original-title="Chỉnh sửa"><i class="fa fa-edit"></i></a>
+                        <a title="" data-placement="top" data-toggle="tooltip" class="tooltips .font-icon" href="{{ route('admin.users.edit', $user->id) }}" data-original-title="Chỉnh sửa"><i  class="fa fa-edit"></i></a>
                     </li>
                     <li class="list-inline-item">
-                        <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Xoá"><i class="fa fa-trash"></i></a>
+             
+                        <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" role="form">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-link"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips .font-icon" href="" data-original-title="Xoá">
+                            <i class="fa fa-trash"></i></a></button>
+                        </form>
+                        
                     </li>
                 </ul>
 

@@ -27,13 +27,11 @@ class UserRequest extends FormRequest
             'username' => 'required',
             'first_name' => 'required',
             'email' => 'required|email|unique:users',
-            'first_name' => 'required',
             'password' => 'required|min:5|max:20',
-            'address' => 'required',
-            'phone' => 'required',
-            'phone' => 'required',
+           /* 'address' => 'required',
+            'phone' => 'required',*/
             'dob' => 'required',
-            'avatar' => 'required'
+            /*'avatar' => 'required'*/
 
         ];
     }
