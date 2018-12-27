@@ -17,7 +17,7 @@
         <div class="col-4">
         	@foreach($product->images as $image)
 			<div class="col-12">
-				<img class="" src="{{ asset($image->path ? $image->path : 'http://via.placeholder.com/300x300') }}" alt="" style="width: 400px;"  class="img-responsive img-rounded">
+				<img class="" src="{{ asset($image->path ? $image->path : 'http://via.placeholder.com/300x300') }}" alt="" style="width: 100%;"  class="img-responsive img-rounded">
 				<hr>
 			</div>
 			@endforeach
@@ -121,7 +121,59 @@
     </div>
 </div>
 
-
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-10">
+            <form action="" method="POST" role="form">
+                <legend>Không gian Comment Test</legend>
+            
+                <div class="form-group">
+                    <label for="">Title</label>
+                    <input type="text" class="form-control" id="" placeholder="Input field">
+                </div>
+                <div class="form-group">
+                    <label for="comment">Comment:</label>
+                    <textarea class="form-control" rows="5" id="comment"></textarea>
+                </div> 
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <h2 class="page-header">Comments</h2>
+            <section class="comment-list">
+                <!-- Comment -->
+            @foreach($comments as $comment)
+              <article class="row">
+                <div class="col-md-2 col-sm-2 hidden-xs">
+                  <figure class="thumbnail">
+                    <img class="img-responsive" width="100%" src="{{ asset($comment->user->avatar ? $comment->user->avatar : 'http://www.tangoflooring.ca/wp-content/uploads/2015/07/user-avatar-placeholder.png')}}" />
+                    <figcaption class="text-center font-weight-bold text-capitalize">{{ $comment->user->username }}</figcaption>
+                  </figure>
+                </div>
+                <div class="col-md-10 col-sm-10">
+                  <div class="panel panel-default arrow left">
+                    <div class="panel-body">
+                      <header class="text-left">
+                        <div class="comment-user"><i class="fa fa-user"></i> {{ $comment->title }}</div>
+                        <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> {{ $comment->created_at }} </time>
+                      </header>
+                      <div class="comment-post">
+                        <p>
+                          {{ $comment->content }}
+                        </p>
+                      </div>
+                      <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            @endforeach
+            </section>
+        </div>
+    </div>
+</div>
 
 
 @endsection

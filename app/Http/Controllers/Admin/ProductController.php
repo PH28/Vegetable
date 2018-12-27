@@ -74,7 +74,8 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         $images = $product->images()->get();
-        return view('admin.products.show', compact('product', 'images'));
+        $comments = $product->comments->where('is_active', 1);
+        return view('admin.products.show', compact('product', 'images', 'comments'));
 
         /*foreach ($product->orderDetails as $orderDetail) {
             $order_id = $orderDetail->order->id;

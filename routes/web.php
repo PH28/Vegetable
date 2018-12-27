@@ -26,6 +26,8 @@ function () {
 	Route::resource('categories', 'CategoryController');
 	Route::resource('users', 'UserController');
 	Route::resource('products', 'ProductController');
+	Route::resource('comments', 'CommentController');
+
 });
 
 Auth::routes();
