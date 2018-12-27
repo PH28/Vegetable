@@ -97,14 +97,14 @@
 
                 <ul class="social-links list-inline m-t-20">
                     <li class="list-inline-item">
-                        <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="{{ route('admin.users.edit', $user->id) }}" data-original-title="Chỉnh sửa"><i class="fa fa-edit"></i></a>
+                        <a title="" data-placement="top" data-toggle="tooltip" class="tooltips .font-icon" href="{{ route('admin.users.edit', $user->id) }}" data-original-title="Chỉnh sửa"><i  class="fa fa-edit"></i></a>
                     </li>
                     <li class="list-inline-item">
              
                         <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" role="form">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-link"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Xoá">
+                            <button type="submit" class="btn btn-link"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips .font-icon" href="" data-original-title="Xoá">
                             <i class="fa fa-trash"></i></a></button>
                         </form>
                         

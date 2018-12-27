@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Product;
 use App\Category;
+use App\Http\Requests\ProductRequest;
 
 class ProductController extends Controller
 {
@@ -38,7 +39,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
         $productData = $request->except('image');
         if ($request->hasFile('image')) 
@@ -52,13 +53,15 @@ class ProductController extends Controller
                 'name' => $name,
                 'path' => $path
             ];                              //imageData là collection nên phải duyệt mảng mới create new object image được.
+            $product = Product::create($productData);
+            foreach ($imageData as $key => $item) {
+                $product->images()->create($item);
+            }        
         }
-
-        $product = Product::create($productData);
-        foreach ($imageData as $key => $item) {
-            $product->images()->create($item);
+        else{
+            $product = Product::create($productData);    
         }
-        
+  
         return redirect()->route('admin.products.index');
     }
 
@@ -71,7 +74,13 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         $images = $product->images()->get();
-        return view('admin.products.show', compact('product', 'images'));
+        $comments = $product->comments->where('is_active', 1);
+        return view('admin.products.show', compact('product', 'images', 'comments'));
+
+        /*foreach ($product->orderDetails as $orderDetail) {
+            $order_id = $orderDetail->order->id;
+            dd($order_id);
+        }*/
     }
 
     /**
@@ -95,7 +104,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductRequest $request, Product $product)
     {
         $productData = $request->except('image');
         if ($request->hasFile('image')) 
@@ -107,11 +116,12 @@ class ProductController extends Controller
             $imageData = [
                 'name' => $name,
                 'path' => $path
-            ];                              //imageData là collection nên phải duyệt mảng mới create new object image được.
+            ];
+            $product->update($productData);
+            $product->images()->create($imageData);           
         }
 
         $product->update($productData);
-        $product->images()->create($imageData);
     
         return view('admin.products.show', compact('product'));
     }
@@ -122,8 +132,15 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        //
+        $images = $product->images()->get();   //phải get() ra mới xoá được
+        foreach ($images as $key => $image) {
+            unlink($image->path);
+            $image->delete();
+        }
+        
+        $product->delete();
+        return redirect()->route('admin.products.index');
     }
 }

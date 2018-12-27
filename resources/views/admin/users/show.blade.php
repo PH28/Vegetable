@@ -44,72 +44,171 @@
 </div>
 @else
 
-<div class="row">
-	<div class="col-sm-8">
-		<h3>Thông tin User</h3>
-	</div>
-	<div class="col-sm-4">
-		<a href="{{ route('admin.users.create') }}" class="btn btn-primary pull-right">Thêm mới User</a>
-	</div>
-</div>
 
 
-<div class="row">
-	<div class="col-md-4">
-        <div class="text-center card-box">
 
-            <div class="member-card pt-2 pb-2">
-                <div class="thumb-lg member-thumb m-b-10 mx-auto">
-                    <img src="{{ asset($user->avatar ? $user->avatar : 'http://via.placeholder.com/200'  ) }}" class="rounded-circle img-thumbnail" alt="profile-image">
-                </div>
-                
 
-                <div class="">
-                    <h4 class="m-b-5"> {{ $user->first_name }}</h4>
-                </div>
-                
-                <div class="">
-                	<p class="text-muted">Email <span> | </span> <span> <a href="#" class="text-pink">{{ $user->email }}</a> </span></p>
-                    <p class="text-muted">Phone <span> | </span> <span> <a href="#" class="text-pink">{{ $user->phone }}</a> </span></p>
-                </div>
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <!-- meta -->
+            <div class="profile-user-box card-box bg-custom">
                 <div class="row">
-                	<div class="col-3">
-                		<p class="text-muted">ID <span> | </span> <span> <a href="#" class="text-pink">{{ $user->id }}</a> </span></p>
-                	</div>
-                    <div class="col-4">
-                        <p class="text-muted">Status <span> | </span> <span> <a href="#" class="text-pink">{{ $user->status==1 ? 'Active' : 'In Active' }}</a> </span></p>
+                    <div class="col-sm-9">
+                        <span class="pull-left mr-3"><img src="{{ asset($user->avatar) }}" alt="" class="thumb-lg rounded-circle"></span>
+                        <div class="media-body text-white">
+                            <h4 class="mt-1 mb-1 font-18">{{ $user->username }}</h4>
+                            <p class="font-13 text-light">{{ $user->dob }}</p>
+                            <p class="text-light mb-0">{{ $user->address }}</p>
+                        </div>
                     </div>
-                	<div class="col-5">
-                		<p class="text-muted">Username <span> | </span> <span> <a href="#" class="text-pink">{{ $user->username }}</a> </span></p>
-                	</div>
+                    <div class="col-sm-3">
+                        <div class="text-right">
+                            <a href="{{ route('admin.users.edit', $user->id) }}">
+                            	<button type="button" class="btn btn-light waves-effect">
+	                                <i class="mdi mdi-account-settings-variant mr-1"></i> Edit Profile
+	                            </button>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="row">
-                	<div class="col-6">
-                		<p class="text-muted">Giới Tính <span> | </span> <span> <a href="#" class="text-pink">{{ $user->gender }}</a> </span></p>
-                	</div>
-                	<div class="col-6">
-                		<p class="text-muted">Ngày Sinh <span> | </span> <span> <a href="#" class="text-pink">{{ $user->dob }}</a> </span></p>
-                	</div>
-                </div>
-
-                <ul class="social-links list-inline m-t-20">
-                    <li class="list-inline-item">
-                        <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="{{ route('admin.users.edit', $user->id) }}" data-original-title="Chỉnh sửa"><i class="fa fa-edit"></i></a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Xoá"><i class="fa fa-trash"></i></a>
-                    </li>
-                </ul>
-
-                <a href=""><button type="button" class="btn btn-primary m-t-20 btn-rounded btn-bordered waves-effect w-md waves-light">Đơn Hàng</button></a>
-
-
             </div>
+            <!--/ meta -->
+        </div>
+    </div>
+    <!-- end row -->
+
+
+    <div class="row">
+        <div class="col-md-4">
+            <!-- Personal-Information -->
+            <div class="card-box">
+                <h4 class="header-title mt-0 m-b-20">Personal Information</h4>
+                <div class="panel-body">
+
+                    <hr/>
+
+                    <div class="text-left">
+                        <p class="text-muted font-13"><strong>ID :</strong> <span class="m-l-15">{{$user->id}}</span></p>
+                        <p class="text-muted font-13"><strong>Tên :</strong> <span class="m-l-15">{{$user->first_name}}</span></p>
+                        <p class="text-muted font-13"><strong>Giới Tính :</strong> <span class="m-l-15">{{$user->gender}}</span></p>
+                        <p class="text-muted font-13"><strong>Sinh Nhật :</strong> <span class="m-l-15">{{$user->dob}}</span></p>
+
+                        <p class="text-muted font-13"><strong>Điện Thoại :</strong><span class="m-l-15">{{$user->phone}}</span></p>
+
+                        <p class="text-muted font-13"><strong>Email :</strong> <span class="m-l-15">{{$user->email}}</span></p>
+
+                        <p class="text-muted font-13"><strong>Địa Chỉ :</strong> <span class="m-l-15">{{$user->address}}</span></p>
+
+                        <p class="text-muted font-13"><strong>Trạng Thái :</strong> <span class="m-l-15">{{ $user->status==1 ? 'Active' : 'In Active' }}</span></p>
+
+                        
+
+                    </div>
+
+                    <ul class="social-links list-inline m-t-20 m-b-0">
+                        <li class="list-inline-item">
+                            <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fa fa-skype"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Personal-Information -->
 
         </div>
 
-    </div> <!-- end col -->
-</div>    <!-- end row -->
+
+        <div class="col-md-8">
+
+            <div class="row">
+
+                <div class="col-sm-4">
+                    <div class="card-box tilebox-one">
+                        <i class="icon-layers float-right text-muted"></i>
+                        <h6 class="text-muted text-uppercase mt-0">Orders</h6>
+                        <h2 class="m-b-20" data-plugin="counterup">1,587</h2>
+                        <span class="badge badge-custom"> +11% </span> <span class="text-muted">From previous period</span>
+                    </div>
+                </div><!-- end col -->
+
+                <div class="col-sm-4">
+                    <div class="card-box tilebox-one">
+                        <i class="icon-paypal float-right text-muted"></i>
+                        <h6 class="text-muted text-uppercase mt-0">Revenue</h6>
+                        <h2 class="m-b-20">$<span data-plugin="counterup">46,782</span></h2>
+                        <span class="badge badge-danger"> -29% </span> <span class="text-muted">From previous period</span>
+                    </div>
+                </div><!-- end col -->
+
+                <div class="col-sm-4">
+                    <div class="card-box tilebox-one">
+                        <i class="icon-rocket float-right text-muted"></i>
+                        <h6 class="text-muted text-uppercase mt-0">Product Bought</h6>
+                        <h2 class="m-b-20" data-plugin="counterup">1,890</h2>
+                        <span class="badge badge-custom"> +89% </span> <span class="text-muted">Last year</span>
+                    </div>
+                </div><!-- end col -->
+
+            </div>
+            <!-- end row -->
+
+            
+
+            <div class="card-box">
+                <h4 class="header-title mb-3">Order</h4>
+
+                <div class="table-responsive">
+                    <table class="table m-b-0">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Order ID</th>
+                            <th>Ngày Đặt</th>
+                            <th>Tổng Tiền</th>
+                            <th>Trạng Thái</th>
+                            <th>Phương Thức Thanh Toán</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Adminox Admin</td>
+                            <td>01/01/2015</td>
+                            <td>07/05/2015</td>
+                            <td><span class="label label-info">Work in Progress</span></td>
+                            <td>Coderthemes</td>
+                        </tr>
+                        
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <!-- end col -->
+
+    </div>
+    <!-- end row -->
+
+
+</div> <!-- container -->
+
+
+
+
+
+
+
+
 @endif
 
 
