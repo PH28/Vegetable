@@ -11,7 +11,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-3">
-            <img src="{{ asset($user->avatar ? $user->avatar : 'http://via.placeholder.com/200x200') }}" alt="" style="height: 200px" class="img-responsive img-rounded">
+            <img src="{{ asset($user->avatar ? $user->avatar : 'http://via.placeholder.com/200x200') }}" alt="" style="width: 100%" class="img-responsive img-rounded">
         </div>
         <div class="col-9">
             <div class="card-box">

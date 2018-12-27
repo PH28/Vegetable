@@ -41,7 +41,7 @@
 	                    <th>Giá</th>
 	                    <th>Số Lượng</th>
 	                    <th>Ngày Tạo</th>
-	                    <th colspan="2">Action</th>
+	                    <th class="text-center" colspan="2">Action</th>
 	                </tr>
 	                </thead>
 
@@ -54,22 +54,16 @@
 						<td>{{ $product->price }}</td>
 						<td>{{ $product->quantity }}</td>
 						<td>{{ $product->created_at }}</td>
-						<td>
-							<div class="row inline">
-							<div class="col-3">
-								<a style="font-size: 20px;" title="" data-placement="top" data-toggle="tooltip" class="tooltips .font-icon" href="{{ route('admin.products.edit', $product->id) }}" data-original-title="Chỉnh sửa"><i  class="fa fa-edit"></i></a>
-							</div>
-							<div class="col-3	">
-								<form action="{{ route('admin.products.destroy', $product->id) }}" method="POST" role="form">
-		                            @csrf
-		                            @method('DELETE')
-		                            <button type="submit" class="btn btn-link"><a style="font-size: 20px;" title="" data-placement="top" data-toggle="tooltip" class="tooltips .font-icon" href="" data-original-title="Xoá">
-		                            <i class="fa fa-trash"></i></a></button>
-		                        </form>
-							</div>
-							</div>
-
+						<td><a class="btn btn-info" href="{{ route('admin.products.edit', $product->id) }}" data-toggle="tooltip" data-original-title="Chỉnh Sửa"><i  class="fa fa-edit"></i></a>
 						</td>
+						<td>
+							<form action="{{ route('admin.products.destroy', $product->id) }}" method="POST" role="form">
+                                @csrf
+                                @method('DELETE')                   
+                                <button data-toggle="tooltip" data-original-title="Xoá Product" type="submit" class="btn btn-danger"><i class="dripicons-trash"></i></button>
+                            </form>
+		                </td>
+						
 					</tr>
 					@endforeach
 	                </tbody>
