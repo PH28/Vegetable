@@ -29,6 +29,7 @@ class ProductController extends Controller
     {
         $categories = Category::whereNotNull('parent_id')->get();  
         return view('admin.products.create',compact('categories'));
+        
         //return dd($categories);
     }
 
