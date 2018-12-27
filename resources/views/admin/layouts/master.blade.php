@@ -9,13 +9,16 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
         <!-- App favicon -->
-        <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.ico') }}">       
+        <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.ico') }}">     
+
+        @yield('link_top')  
   
         <!-- App css -->
         <link href="{{ asset('admin/assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('admin/assets/css/icons.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('admin/assets/css/metismenu.min.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('admin/assets/css/style_cl.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('admin/assets/css/mycss.css') }}" rel="stylesheet" type="text/css" />
 
         <script src="{{ asset('admin/assets/js/modernizr.min.js') }}"></script>
 
@@ -361,27 +364,9 @@
         <script src="{{ asset('admin/assets/js/waves.js') }}"></script>
         <script src="{{ asset('admin/assets/js/jquery.slimscroll.js') }}"></script>
 
-        <!-- Flot chart -->
-        <script src="{{ asset('admin/plugins/flot-chart/jquery.flot.min.js') }}"></script>
-        <script src="{{ asset('admin/plugins/flot-chart/jquery.flot.time.js') }}"></script>
-        <script src="{{ asset('admin/plugins/flot-chart/jquery.flot.tooltip.min.js') }}"></script>
-        <script src="{{ asset('admin/plugins/flot-chart/jquery.flot.resize.js') }}"></script>
-        <script src="{{ asset('admin/plugins/flot-chart/jquery.flot.pie.js') }}"></script>
-        <script src="{{ asset('admin/plugins/flot-chart/jquery.flot.crosshair.js') }}"></script>
-        <script src="{{ asset('admin/plugins/flot-chart/curvedLines.js') }}"></script>
-        <script src="{{ asset('admin/plugins/flot-chart/jquery.flot.axislabels.js') }}"></script>
         
+        @yield('link_bottom')  
         
-        
-        
-        <!-- KNOB JS -->
-        <!--[if IE]>
-        <script type="text/javascript" src="../plugins/jquery-knob/excanvas.js"></script>
-        <![endif]-->
-        <script src="{{ asset('admin/plugins/jquery-knob/jquery.knob.js') }}"></script>
-
-        <!-- Dashboard Init -->
-        <script src="{{ asset('admin/assets/pages/jquery.dashboard.init.js') }}"></script>
 
         <!-- App js -->
         <script src="{{ asset('admin/assets/js/jquery.core.js') }}"></script>

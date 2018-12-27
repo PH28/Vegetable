@@ -1,60 +1,123 @@
 @extends('admin.layouts.master')
 
 @section('title', 'Edit Product')
+
+@section('page', 'Products')
+
 @section('content')
+
+
+
 <div class="container-fluid">
-	<div class="row">
-		<div class="col-sm-8">
-			<form action="{{ route('admin.products.update', $product->id) }}" method="POST" role="form" enctype="multipart/form-data">
-				@csrf
-				@method('PUT')
+    <div class="row">
+    	
+        <div class="col-4">
+        	@foreach($images as $image)
+			<div class="col-12">
+				<img class="" src="{{ asset($image->path ? $image->path : 'http://via.placeholder.com/300x300') }}" alt="" style="height: 300px" class="img-responsive img-rounded">
+				<hr>
+			</div>
+			@endforeach
+        </div>
+        <div class="col-8">
+            <div class="card-box">
+                <h1 class="m-t-0 header-title">Edit Product Form </h1>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="p-20">
+                            <form action="{{ route('admin.products.update', $product->id) }}" method="POST" class="form-horizontal" role="form" enctype="multipart/form-data">
+                                @csrf
+                                @method('PUT')
+                               <div class="form-group row">
+                                    <label class="col-2 col-form-label" for="name">Tên Sản Phẩm</label>
+                                    <div class="col-10">
+                                        <input name="name" id="name" type="text" class="form-control" placeholder="Nhập tên sản phẩm" value="{{ $product->name }}">
+                                        @if($errors->has('name'))
+                                            <div class="alert alert-danger">
+                                                <span>{{ $errors->first('name') }}</span>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
 
-				<legend>Sửa thông tin Sản phẩm {{ $product->id }}. {{ $product->name }}</legend>
+                                <div class="form-group row">
+                                    <label class="col-2 col-form-label" for="price">Giá </label>
+                                    <div class="col-10">
+                                        <input name="price" type="number" id="price" class="form-control" placeholder="Nhập giá" value="{{ $product->price }}">
+                                        @if($errors->has('price'))
+                                            <div class="alert alert-danger">
+                                                <span class="strong">{{ $errors->first('price') }}</span>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                                
 
-				<div class="form-group">
-					<label for="">Tên Sản Phẩm</label>
-					<input name="name" value="{{ $product->name }}" type="text" class="form-control" id="" placeholder="Input field">
-				</div>
-				<div class="form-group">
-					<label for="">Giá</label>
-					<input name="price" value="{{ $product->price }}" type="number" class="form-control" id="" placeholder="Input field">
-				</div>
-				<div class="form-group">
-					<label for="">Số Lượng</label>
-					<input name="quantity" value="{{ $product->quantity }}" type="number" class="form-control" id="" placeholder="Input field">
-				</div>
-				<div class="form-group">
-					<label for="">Mô Tả</label>
-					<textarea class="form-group" name="description" id="" cols="100" rows="10" placeholder="Input field">{{ $product->description }}</textarea>
-				</div>
-				<div class="form-group">
-					<label for="">Danh mục</label>
-					<select class="c-select">
-						<option selected>Chọn danh mục</option>
-						@foreach($categories as $category)
-						@if($category->id == $product->category_id)
-						<option value="{{ $category->id }}" selected>{{ $category->id }}. {{ $category->name }}</option>
-						@else
-						<option value="{{ $category->id }}">{{ $category->id }}. {{ $category->name }}</option>
-						@endif
-						@endforeach
-					</select>	
-				</div>
-				<!-- lỗi khi không thêm hình mới -->
-				<div class="form-group">
-					<label for="">Thêm Hình Ảnh</label>
-					@foreach($images as $image)
-					<img style="height: 300px" src="{{ asset($image->path) }}" alt="">
-					@endforeach
-					<input name="image" type="file" class="form-control" id="" placeholder="Input field">
-				</div>
-				
+                                <div class="form-group row">
+                                    <label class="col-2 col-form-label" >Số Lượng</label>
+                                    <div class="col-10">
+                                        <input name="quantity" type="number" id="quantity"  class="form-control" placeholder="Số Lượng" value="{{ $product->quantity }}">
+                                        @if($errors->has('quantity'))
+                                            <div class="alert alert-danger">
+                                                <span class="strong">{{ $errors->first('quantity') }}</span>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
 
-				<button type="submit" class="btn btn-primary">Cập nhật Sản Phẩm</button>
-			</form>
+                                <div class="form-group row">
+                                    <label class="col-2 col-form-label">Mô Tả</label>
+                                    <div class="col-10">
+                                        <textarea name="description"  class="form-control" rows="10" placeholder="Nhập mô tả sản phẩm">{{ $product->description }}</textarea>
+                                        @if($errors->has('description'))
+                                            <div class="alert alert-danger">
+                                                <span class="strong">{{ $errors->first('description') }}</span>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group row">
+                                    <label class="col-2 col-form-label">Danh Mục</label>
+                                    <div class="col-10">
+                                        <select name="category_id" class="form-control">
+                                            <option selected>Chọn danh mục</option>
+											@foreach($categories as $category)
+											@if($category->id == $product->category_id)
+											<option value="{{ $category->id }}" selected>{{ $category->id }}. {{ $category->name }}</option>
+											@else
+											<option value="{{ $category->id }}">{{ $category->id }}. {{ $category->name }}</option>
+											@endif
+											@endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                                             
+                                <div class="form-group row">
+                                    <label class="col-2 col-form-label">Hình Ảnh</label>
+                                    <div class="col-10">
+                                        <input name="image" type="file" class="form-control">
+                                        @if($errors->has('image'))
+                                            <div class="alert alert-danger">
+                                                <span class="strong">{{ $errors->first('image') }}</span>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
 
-		</div>
-	</div>
+                                
+                                <button type="submit" class="btn btn-primary">Cập Nhật Sản Phẩm</button>
+
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- end row -->
+
+            </div> <!-- end card-box -->
+        </div>
+    </div>
 </div>
 
 

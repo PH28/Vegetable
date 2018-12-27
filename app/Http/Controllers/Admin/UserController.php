@@ -102,6 +102,7 @@ class UserController extends Controller
             $avatar = 'images/avatars/'.$name;
             $data['avatar'] = $avatar;
         }
+        unlink($user->avatar);
         $user->update($data);
         return redirect()->route('admin.users.show',compact('user'));
 
