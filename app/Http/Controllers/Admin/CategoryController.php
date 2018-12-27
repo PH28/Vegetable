@@ -33,6 +33,7 @@ class CategoryController extends Controller
     {
         $categories = Category::all();
         return view('admin.categories.create', compact('categories'));
+
     }
 
     /**
@@ -41,7 +42,7 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryRequest $request)
+    public function store(Request $request)
     {
         $data = $request->all();
         Category::create($data);
@@ -92,8 +93,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->route('admin.categories.index');
     }
 }

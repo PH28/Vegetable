@@ -37,11 +37,23 @@
 								<td>{{ $category->name }}</td>
 								<td><a href="{{ route('admin.categories.edit', $category->id) }}">Edit</a></td>
 							</tr>
-							@foreach ($category->children as $child)
+							@foreach ($category -> children as $child)
 								<tr>
 									<td class="text-center">{{ $child->id }}</td>
-									<td>{{ $child->name }}</td>
-									<td><a href="{{ route('admin.categories.edit', $child->id) }}">Edit</a></td>
+									<td>{{ $child->name }}  </td>
+									<td><a href="{{ route('admin.categories.edit', $child->id) }}"><button class="btn btn-large btn-block btn-success" style="width:100px">Edit</button></a></td>
+									<td>
+										<form action="{{ route('admin.categories.destroy', $child->id) }}" method="post" onsubmit="return confirm('Bạn có chắc chắn muốn xóa ?')">
+										@csrf
+										@method('DELETE')
+										<button type="submit" class="btn btn-large btn-block btn-success" style="width:100px">Delete</button>
+										
+									</form>
+									</td>
+
+									
+										
+									
 								</tr>
 							@endforeach
 						@endif
