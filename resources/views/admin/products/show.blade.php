@@ -156,7 +156,15 @@
                   <div class="panel panel-default arrow left">
                     <div class="panel-body">
                       <header class="text-left">
-                        <div class="comment-user"><i class="fa fa-user"></i> {{ $comment->title }}</div>
+                        <div class="comment-user font-weight-bold text-capitalize"><i class="fa fa-user"></i> {{ $comment->title }}</div>
+                        <div>
+                            @for($i=1; $i<=$comment->rating; $i++)
+                            <i class="fa fa-star"></i>
+                            @endfor
+                            @for($i=1; $i<=(5-$comment->rating); $i++)
+                            <i class="fa fa-star-o"></i>
+                            @endfor
+                        </div>
                         <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> {{ $comment->created_at }} </time>
                       </header>
                       <div class="comment-post">

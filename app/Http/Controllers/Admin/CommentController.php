@@ -16,7 +16,9 @@ class CommentController extends Controller
     public function index()
     {
         $comments = Comment::paginate(10);
-        return view('admin.comments.index', compact('comments'));
+        $comments_active = Comment::where('is_active', 1)->paginate(10);
+        $comments_unactive = Comment::where('is_active', 0)->paginate(10);
+        return view('admin.comments.index', compact('comments', 'comments_active', 'comments_unactive'));
     }
 
     /**

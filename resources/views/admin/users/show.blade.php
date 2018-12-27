@@ -59,7 +59,7 @@
                     <div class="col-sm-9">
                         <span class="pull-left mr-3"><img src="{{ asset($user->avatar) }}" alt="" class="thumb-lg rounded-circle"></span>
                         <div class="media-body text-white">
-                            <h4 class="mt-1 mb-1 font-18">{{ $user->username }}</h4>
+                            <h4 class="mt-1 mb-1 font-18 text-capitalize">{{ $user->username }}</h4>
                             <p class="font-13 text-light">{{ $user->dob }}</p>
                             <p class="text-light mb-0">{{ $user->address }}</p>
                         </div>
