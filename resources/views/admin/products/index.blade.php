@@ -41,7 +41,8 @@
 	                    <th>Giá</th>
 	                    <th>Số Lượng</th>
 	                    <th>Ngày Tạo</th>
-	                    <th class="text-center" colspan="2">Action</th>
+	                    <th>Sửa</th>
+	                    <th>Xoá</th>
 	                </tr>
 	                </thead>
 
@@ -73,13 +74,7 @@
 	</div> <!-- end row -->
 </div>
 
-<div  class="container-fluid">
-	<div class="row">
-		<div class="col-sm-12">
-	       {{$products->links()}}
-	    </div>
-	</div>
-</div>
+
 
 @endsection
 
@@ -89,11 +84,27 @@
     <script src="{{ asset('admin/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('admin/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
     <!-- Buttons examples -->
-    <script src="{{ asset('admin/plugins/datatables/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('admin/plugins/datatables/buttons.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('admin/plugins/datatables/jszip.min.js') }}"></script>
-    <script src="{{ asset('admin/plugins/datatables/pdfmake.min.js') }}"></script>
-    <script src="{{ asset('admin/plugins/datatables/vfs_fonts.js') }}"></script>
-    <script src="{{ asset('admin/plugins/datatables/buttons.html5.min.js') }}"></script>
-    <script src="{{ asset('admin/plugins/datatables/buttons.print.min.js') }}"></script>
+<!--     <script src="{{ asset('admin/plugins/datatables/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('admin/plugins/datatables/buttons.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('admin/plugins/datatables/jszip.min.js') }}"></script>
+<script src="{{ asset('admin/plugins/datatables/pdfmake.min.js') }}"></script>
+<script src="{{ asset('admin/plugins/datatables/vfs_fonts.js') }}"></script>
+<script src="{{ asset('admin/plugins/datatables/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('admin/plugins/datatables/buttons.print.min.js') }}"></script> -->
+@endsection
+
+@section('codescript')
+	<script type="text/javascript">
+        $(document).ready(function() {
+
+            // Default Datatable
+            $('#datatable').DataTable();
+
+            
+
+            table.buttons().container()
+                    .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
+        } );
+
+    </script>
 @endsection

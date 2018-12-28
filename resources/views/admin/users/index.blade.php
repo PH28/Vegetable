@@ -2,6 +2,15 @@
 
 @section('title', 'List User')
 @section('page', 'Users')
+
+@section('link_top')
+    
+
+    <!-- DataTables -->
+    <link href="{{ asset('admin/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('admin/plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+@endsection
+
 @section('content')
 
 <div class="container-fluid">
@@ -15,10 +24,10 @@
 
     <div class="row">
         <div class="col-12">
-            <div class="card-box">
+            <div class="card-box table-responsive">
                 <h4 class="m-t-0 header-title">Admin Info</h4>
-    			
-                <table class="table">
+
+                <table id="datatable" class="table infotable table-bordered">
                     <thead>
                     <tr>
                         <th>#</th>
@@ -31,7 +40,7 @@
                     <tbody>
                     @foreach($admins as $admin)
     	                <tr>
-    	                    <th scope="row">#{{ $loop->iteration }}</th>
+    	                    <th>#{{ $loop->iteration }}</th>
     	                    <td>{{ $admin->id }}</td>
     	                    <td>{{ $admin->username }}</td>
     	                    <td>{{ $admin->email }}</td>
@@ -53,15 +62,15 @@
     		<a href="{{ route('admin.users.create') }}" class="btn btn-primary pull-right">Thêm mới User</a>
     	</div>
     </div>
+</div>
 
-
-
+<div class="container-fluid">
     <div class="row">
         <div class="col-12">
             <div class="card-box table-responsive">
-                <h4 class="m-t-0 header-title">User List</h4>
+                <h4 class="m-t-0 header-title">User Info</h4>
 
-                <table id="datatable" class="table table-bordered">
+                <table id="datatable" class="table infotable table-bordered">
                     <thead>
                     <tr>
                         <th>#</th>
@@ -71,7 +80,8 @@
                         <th>Phone</th>
                         <th>Email</th>
                         <th>Ngày Sinh</th>
-                        <th class='text-center' colspan="2">Action</th>
+                        <th>Sửa</th>
+                        <th>Xoá</th>
                     </tr>
                     </thead>
 
@@ -105,13 +115,42 @@
 </div>
 
 
-<div  class="container-fluid p-y-md">
-	<div class="row">
-		<div class="col-sm-12">
-	       {{$users->links()}}
-	    </div>
-	</div>
-</div>
 
 
 @endsection
+
+
+@section('link_bottom')
+    
+    
+    <!-- Required datatable js -->
+    <script src="{{ asset('admin/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('admin/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
+    <!-- Selection table -->
+    <script src="{{ asset('admin/plugins/datatables/dataTables.select.min.js') }}"></script>
+
+
+@endsection
+
+@section('codescript')
+    <script type="text/javascript">
+            $(document).ready(function() {
+
+                // Default Datatable
+                $('.infotable').DataTable();
+
+                
+
+                table.buttons().container()
+                        .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
+
+            } );
+
+        </script>
+@endsection
+
+<!-- phải sử dụng 2 loại bảng khác nhau mới ko lỗi, chưa hiểu
+    jQuery.Deferred exception: table is not defined ReferenceError: table is not defined
+    at HTMLDocument.<anonymous>
+ -->

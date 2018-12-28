@@ -38,9 +38,9 @@
                     <!-- User box -->
                     <div class="user-box">
                         <div class="user-img">
-                            <img src="assets/images/users/avatar-1.jpg" alt="user-img" title="Mat Helme" class="rounded-circle img-fluid">
+                            <img src="{{asset(Auth::user()->avatar)}}" alt="user-img" title="Mat Helme" class="rounded-circle img-fluid">
                         </div>
-                        <h5><a href="#">Maxine Kennedy</a> </h5>
+                        <h5 class="font-weight-bold text-capitalize"><a href="#">{{ Auth::user()->username }}</a> </h5>
                         <p class="text-muted">Admin Head</p>
                     </div>
 
@@ -256,7 +256,7 @@
                             <li class="dropdown notification-list">
                                 <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button"
                                    aria-haspopup="false" aria-expanded="false">
-                                    <img src="assets/images/users/avatar-1.jpg" alt="user" class="rounded-circle"> <span class="ml-1">Maxine K <i class="mdi mdi-chevron-down"></i> </span>
+                                    <img src="{{asset(Auth::user()->avatar)}}" alt="user" class="rounded-circle"> <span class="ml-1 text-capitalize font-weight-bold">{{ Auth::user()->username }} <i class="mdi mdi-chevron-down"></i> </span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated profile-dropdown ">
                                     <!-- item-->
@@ -265,29 +265,16 @@
                                     </div>
 
                                     <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <a href="{{ route('admin.users.show', Auth::user()->id) }}" class="dropdown-item notify-item">
                                         <i class="fi-head"></i> <span>My Account</span>
                                     </a>
 
                                     <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <i class="fi-cog"></i> <span>Settings</span>
-                                    </a>
-
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <i class="fi-help"></i> <span>Support</span>
-                                    </a>
-
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <i class="fi-lock"></i> <span>Lock Screen</span>
-                                    </a>
-
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <i class="fi-power"></i> <span>Logout</span>
-                                    </a>
+                                    <form action="{{ route('logout') }}" method="POST" role="form">
+                                        @csrf
+                                    <button class="btn btn-link dropdown-item notify-item" type="submit"><a href="javascript:void(0);" class=""><i class="fi-power"></i><span>Logout</span></a></button>
+                                    </form>
+                                    
 
                                 </div>
                             </li>
@@ -371,6 +358,8 @@
         <!-- App js -->
         <script src="{{ asset('admin/assets/js/jquery.core.js') }}"></script>
         <script src="{{ asset('admin/assets/js/jquery.app.js') }}"></script>
+        
+        @yield('codescript')
 
     </body>
 </html>

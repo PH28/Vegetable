@@ -6,7 +6,9 @@
 
 @section('link_top')
 	
-
+	<!-- DataTables -->
+    <link href="{{ asset('admin/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('admin/plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
 
 @endsection
 
@@ -44,7 +46,7 @@
                         <div class="card-box table-responsive">
 					        <h4 class="m-t-0 header-title">List Comment</h4>
 
-					        <table id="datatable" class="table table-bordered">
+					        <table id="datatable" class="table table-bordered infotable">
 					            <thead>
 					            <tr>
 					                <th>ID</th>
@@ -53,7 +55,8 @@
 					                <th>Title</th>
 					                <th>Content</th>
 					                <th>Created At</th>
-					                <th colspan="2">Action</th>
+					                <th>Action</th>
+					                <th>Delete</th>
 					            </tr>
 					            </thead>
 
@@ -103,7 +106,7 @@
                         <div class="card-box table-responsive">
 					        <h4 class="m-t-0 header-title">List Comment</h4>
 
-					        <table id="datatable" class="table table-bordered">
+					        <table id="datatable" class="table table-bordered infotable">
 					            <thead>
 					            <tr>
 					                <th>ID</th>
@@ -112,7 +115,8 @@
 					                <th>Title</th>
 					                <th>Content</th>
 					                <th>Created At</th>
-					                <th colspan="2">Action</th>
+					                <th>Action</th>
+					                <th>Delete</th>
 					            </tr>
 					            </thead>
 
@@ -162,7 +166,7 @@
                         <div class="card-box table-responsive">
 					        <h4 class="m-t-0 header-title">List Comment</h4>
 
-					        <table id="datatable" class="table table-bordered">
+					        <table id="datatable" class="table table-bordered infotable">
 					            <thead>
 					            <tr>
 					                <th>ID</th>
@@ -171,7 +175,8 @@
 					                <th>Title</th>
 					                <th>Content</th>
 					                <th>Created At</th>
-					                <th colspan="2">Action</th>
+					                <th>Action</th>
+					                <th>Delete</th>
 					            </tr>
 					            </thead>
 
@@ -222,19 +227,29 @@
 	</div>
 </div>
 
-<!-- Phân trang -->
-<div  class="container-fluid">
-	<div class="row">
-		<div class="col-sm-12">
-	       {{$comments->links()}}
-	    </div>
-	</div>
-</div>
 
 
 @endsection
 
 @section('link_bottom')
+	<!-- Required datatable js -->
+    <script src="{{ asset('admin/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('admin/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
 
+@endsection
 
+@section('codescript')
+	<script type="text/javascript">
+        $(document).ready(function() {
+
+            // Default Datatable
+            $('.infotable').DataTable();
+
+            
+
+            table.buttons().container()
+                    .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
+        } );
+
+    </script>
 @endsection

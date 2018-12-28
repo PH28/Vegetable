@@ -19,8 +19,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::where('role_id', 2)->orderBy('created_at', 'desc')->paginate(10);
-        $admins = User::where('role_id', 1)->paginate(5);
+        $users = User::where('role_id', 2)->orderBy('created_at', 'desc')->get();
+        $admins = User::where('role_id', 1)->get();
         return view('admin.users.index', compact('users', 'admins'));
     }
 
@@ -101,8 +101,11 @@ class UserController extends Controller
             $file->move('images/avatars', $name);
             $avatar = 'images/avatars/'.$name;
             $data['avatar'] = $avatar;
+            if ($user->avatar== !null) {
+            unlink($user->avatar);
+            }
         }
-        unlink($user->avatar);
+
         $user->update($data);
         return redirect()->route('admin.users.show',compact('user'));
 
