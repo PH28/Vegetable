@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-use Illuminate\Contracts\Session\Session;
 
 use App\User;
 use App\Http\Controllers\Controller;
@@ -83,8 +82,7 @@ class RegisterController extends Controller
             $message->to($user['email']);
             $message->subject('Vegetable.com - Xác nhận tài khoản email');
         });
-        $message = Session::put('success', 'we sent activation code, please check your email');
-        return redirect()->to('login')->with($message);
+        return redirect()->to('login')->with('success', 'we sent activation code, please check your email');
 
     }
 
