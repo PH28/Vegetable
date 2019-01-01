@@ -8,11 +8,12 @@
                 <div class="card-header">{{ __('Login') }}</div>
                 
                 <div class="card-body">
-                    @if (!empty($message))
-                      <h4>{{session::get('success')}}</h4>
-                    @endif
+
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
+                        @if(!empty($success))
+                            <h4>{{$success}}</h4>
+                        @endif
 
                         <div class="form-group row">
                             <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
