@@ -96,14 +96,15 @@ class UserController extends Controller
         }
         
         if ($request->hasFile('avatar')) {
+            if ($user->avatar != null) {
+            unlink($user->avatar);
+            }
             $file = $request->file('avatar');
             $name = time().$file->getClientOriginalName();
             $file->move('images/avatars', $name);
             $avatar = 'images/avatars/'.$name;
             $data['avatar'] = $avatar;
-            if ($user->avatar== !null) {
-            unlink($user->avatar);
-            }
+            
         }
 
         $user->update($data);
