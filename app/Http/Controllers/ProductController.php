@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use Illuminate\Http\Request;
+use App\Category;
 
 class ProductController extends Controller
 {
@@ -14,8 +15,18 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::inRandomOrder()->take(40)->get();
+
+        return view('users.products.index', compact('products'));
     }
+
+
+    public function productByCategory($id){
+        $category = Category::find($id);
+        $productsByCategory = Product::where('category_id', $id)->get();
+        return view('users.products.productByCategory', compact('productsByCategory', 'category'));
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -46,7 +57,17 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        $allcomments = $product->comments;
+        $comments = $product->comments->where('is_active', 1);
+
+        $rating = ceil($allcomments->average('rating'));
+
+        $category = $product->category;
+
+        $other_products = $category->products->where('id', '<>', $product->id );   //cùng category
+
+
+       return view('users.products.show', compact('product', 'comments', 'rating', 'other_products', 'category'));
     }
 
     /**

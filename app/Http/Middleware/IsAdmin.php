@@ -18,6 +18,9 @@ class IsAdmin
         if ($request->user()->role_id == 1) {
             return $next($request);
         }
+        else{
+            return redirect()->route('home');  //lỗi
+        }
 
         
         

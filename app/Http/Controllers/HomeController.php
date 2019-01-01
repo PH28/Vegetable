@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
+use App\Product;
+use App\OrderDetail;
+use DB;
 
 class HomeController extends Controller
 {
@@ -13,7 +17,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+       /* $this->middleware('auth');*/
     }
 
     /**
@@ -21,8 +25,12 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index()  //trang chủ
     {
-        return view('home');
+        $new_products = Product::take(8)->orderBy('created_at', 'DESC')->paginate(8);
+       return view('users.web.index', compact('new_products'));
     }
+
+
 }
+

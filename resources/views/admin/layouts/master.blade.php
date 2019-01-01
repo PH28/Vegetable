@@ -272,7 +272,7 @@
                                     <!-- item-->
                                     <form action="{{ route('logout') }}" method="POST" role="form">
                                         @csrf
-                                    <button class="btn btn-link dropdown-item notify-item" type="submit"><a href="javascript:void(0);" class=""><i class="fi-power"></i><span>Logout</span></a></button>
+                                    <button class="btn btn-link dropdown-item notify-item" type="submit"><a style="color: black;" href="javascript:void(0);" class=""><i class="fi-power"></i><span>Logout</span></a></button>
                                     </form>
                                     
 
