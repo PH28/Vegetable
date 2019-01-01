@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
+Route::get('/', 'HomeController@index')->name('web');
 
 Route::get('/user/verify/{token}', 'Auth\RegisterController@verify');
 

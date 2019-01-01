@@ -82,7 +82,8 @@ class RegisterController extends Controller
             $message->to($user['email']);
             $message->subject('Vegetable.com - Xác nhận tài khoản email');
         });
-        return redirect()->to('login')->with('success', 'we sent activation code, please check your email');
+        //session(['success'=>'Register success! We sent activation code, please check your email.']);
+        return redirect()->to('login')->with('success', 'Register success! We sent activation code, please check your email.');
 
     }
 
@@ -90,7 +91,7 @@ class RegisterController extends Controller
         $user = User::where('confirmation_code', $code);
         if (!is_null($user)) {
             $user->update(['status' =>1, 'confirmation_code'=>null]);
-            $notification = "you are verified success!";
+            $notification = "Great! You are verified success!";
         }
         else{
             $notification = "Your confirmation code is invalid";
