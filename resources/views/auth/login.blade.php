@@ -1,25 +1,33 @@
-@extends('layouts.app')
+@extends('users.layouts.master')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-                
-                <div class="card-body">
+@section('banner_right')
+
+        <div class="w3_login">
+            <h3>Sign In</h3>
+            <div class="w3_login_module">
+                <div class="module form-module">
+                    <div class="toggle"></div>
+                    <div class="form">
+                    <h2>Login to your account</h2>
 
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-                        @if(!empty($success))
-                            <h4>{{$success}}</h4>
+                        @if(session()->get('success'))
+                        <div class="alert alert-success">
+                            <h5>{{session()->get('success')}}</h5>
+                        </div>
+                        @endif
+                        @if(session()->get('status'))
+                        <div class="alert alert-success">
+                            <h5>{{session()->get('status')}}</h5>
+                        </div>
                         @endif
 
                         <div class="form-group row">
                             <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+                            <div class="col-md-8">
+                                <input type="email" name="email" placeholder="Email" required=" " value="{{ old('email') }}">
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
@@ -32,8 +40,8 @@
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                            <div class="col-md-8">
+                                <input type="password" name="password" placeholder="Password" required=" ">
 
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback" role="alert">
@@ -69,9 +77,9 @@
                             </div>
                         </div>
                     </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+<!-- //login -->
 @endsection

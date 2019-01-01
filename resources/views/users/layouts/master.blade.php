@@ -18,6 +18,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		
 
 <!-- //for-mobile-apps -->
+
 <link href="{{asset('users/css/bootstrap.css')}}" rel="stylesheet" type="text/css" media="all" />
 <link href="{{asset('users/css/style.css')}}" rel="stylesheet" type="text/css" media="all" />
 <!-- font-awesome icons -->
@@ -97,7 +98,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</ul>
 				 </div><!-- /.navbar-collapse -->
 			</nav>
+		 
 		</div>
+
 		<div class="w3l_banner_nav_right">
 			@yield('banner_right')
 			
@@ -105,7 +108,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		<div class="clearfix"></div>
 	</div>
-
+	
 @yield('hot_product')
 @yield('product1')
 @yield('product2')
@@ -131,6 +134,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 @include('users.layouts.footer')
 <!-- //footer -->
 <!-- Bootstrap Core JavaScript -->
+
 <script src="{{asset('users/js/bootstrap.min.js')}}"></script>
 <script>
 $(document).ready(function(){
