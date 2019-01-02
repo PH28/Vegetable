@@ -13,6 +13,20 @@
 
 
 <div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-8 offset-sm-1">
+            @if($message = Session::get('success'))
+                <div class="alert alert-success">
+                    <strong>{{ $message }}</strong>
+                </div>
+            @endif
+            @if($message = Session::get('danger'))
+                <div class="alert alert-danger">
+                    <strong>{{ $message }}</strong>
+                </div>
+            @endif
+        </div>
+    </div>
 	<div class="row">
         <div class="col-4">
         	@foreach($product->images as $image)
@@ -28,7 +42,7 @@
                 <div class="">
                     <div class="">
                         <h5 class=" m-b-5">ID: <span class="text-custom">{{ $product->id }}</span> </h5>
-                        <h5 class=" m-b-5">Danh Mục: <span class="text-custom">{{ $product->category->name }}</span> </h5>
+                        <h5 class=" m-b-5">Danh Mục: <a href="{{ route('admin.category.products', $product->category->id ) }}"><span class="text-custom">{{ $product->category->name }}</span></a> </h5>
                         <p><b>Giá: {{ $product->price }}</b></p>
                         <p><b>Số Lượng: {{ $product->quantity }}</b></p>
                         <p><b>Ngày Tạo: {{ $product->created_at }}</b></p>
@@ -49,7 +63,7 @@
                             <form action="{{route('admin.products.destroy', $product->id)}}" method="POST" role="form">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-danger" type="submit">Xoá Sản Phẩm</button>
+                                <button onclick = "return confirm('Nếu bạn xoá người dùng này, tất cả đơn hàng và comment cũng sẽ bị xoá.\nBạn có chắc chắn muốn xoá người dùng này?')" class="btn btn-danger" type="submit">Xoá Sản Phẩm</button>
                             </form>
 						</div>
 					</div>
@@ -144,6 +158,7 @@
             <h2 class="page-header">Comments</h2>
             <section class="comment-list">
                 <!-- Comment -->
+            @if(!empty($comments))
             @foreach($comments as $comment)
               <article class="row">
                 <div class="col-md-2 col-sm-2 hidden-xs">
@@ -178,6 +193,7 @@
                 </div>
               </article>
             @endforeach
+            @endif
             </section>
         </div>
     </div>

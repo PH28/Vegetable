@@ -7,6 +7,16 @@
 @if($user->role_id == 1)
 <div class="row">
 	<div class="col-sm-8">
+        @if($message = Session::get('success'))
+            <div class="alert alert-success">
+                <strong>{{ $message }}</strong>
+            </div>
+        @endif
+        @if($message = Session::get('danger'))
+            <div class="alert alert-danger">
+                <strong>{{ $message }}</strong>
+            </div>
+        @endif
 	</div>
 	<div class="col-sm-4">
 		<a href="{{ route('admin.users.create') }}" class="btn btn-primary pull-right">Thêm mới Admin</a>
@@ -50,6 +60,20 @@
 
 
 <div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-8 offset-sm-1">
+            @if($message = Session::get('success'))
+                <div class="alert alert-success">
+                    <strong>{{ $message }}</strong>
+                </div>
+            @endif
+            @if($message = Session::get('danger'))
+                <div class="alert alert-danger">
+                    <strong>{{ $message }}</strong>
+                </div>
+            @endif
+            </div>
+    </div>
 
     <div class="row">
         <div class="col-sm-12">
@@ -72,6 +96,20 @@
 	                            </button>
                             </a>
                         </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3 offset-sm-9">
+                        <div class="text-right">
+                            <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" role="form">
+                            @csrf
+                            @method('DELETE')
+                            <button onclick = "return confirm('Nếu bạn xoá người dùng này, tất cả đơn hàng và comment cũng sẽ bị xoá.\nBạn có chắc chắn muốn xoá người dùng này?')" type="submit" class="btn btn-danger waves-effect">
+                                <i class="mdi mdi-account-settings-variant mr-1"></i> Delete Profile
+                            </button>
+                            </form>
+                        </div>
+                        
                     </div>
                 </div>
             </div>

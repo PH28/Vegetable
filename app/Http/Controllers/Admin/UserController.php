@@ -55,7 +55,7 @@ class UserController extends Controller
 
        
         User::create($data);
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.users.index')->with('success', 'Bạn vừa thêm mới một người dùng thành công!!!');
     }
 
     /**
@@ -108,7 +108,7 @@ class UserController extends Controller
         }
 
         $user->update($data);
-        return redirect()->route('admin.users.show',compact('user'));
+        return redirect()->route('admin.users.show',compact('user'))->with('success', 'Bạn vừa cập nhật thông tin người dùng thành công!');
 
     }
 
@@ -120,9 +120,12 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        unlink($user->avatar);
+        if ($user->avatar !=null) {
+            unlink($user->avatar);
+        }
+        
         $user->delete();
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.users.index')->with('danger', 'Bạn vừa xoá một tài khoản người dùng!');
         
     }
 }

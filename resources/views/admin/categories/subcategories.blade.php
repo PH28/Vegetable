@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('title', 'List Categories')
+@section('title', 'Sub Categories')
 
 @section('page', 'Categories')
 
@@ -15,8 +15,9 @@
 @section('content')
 
 
-<div class="container">
-	<div class="row">
+
+<div class="container-fluid">
+    <div class="row">
         <div class="col-sm-8 offset-sm-1">
             @if($message = Session::get('success'))
                 <div class="alert alert-success">
@@ -30,26 +31,15 @@
             @endif
         </div>
     </div>
-	<div class="row">
-		<div class="col-sm-10">
-			
-		</div>
-		<div class="col-sm-2 ">
-			<a href="{{ route('admin.categories.create') }}" class="btn btn-primary">Thêm mới danh mục</a>
-		</div>
-	</div>
-</div>
-
-
-<div class="container-fluid">
     <div class="row">
         <div class="col-12">
             <div class="card-box table-responsive">
-                <h4 class="m-t-0 header-title">List Danh mục Sản phẩm</h4>
+                <h4 class="m-t-0 header-title">List Danh Mục con của <strong><i>{{ $category->name }}</i></strong></h4>
                 <table id="datatable" class="table infotable table-bordered">
 
                 	<thead>
                     <tr>
+                        <th>STT</th>
                         <th>ID</th>
                         <th>Tên Danh Mục</th>
                         <th>Mô Tả</th>
@@ -59,19 +49,22 @@
                     </thead>
 
                     <tbody>
-                    @foreach($categories as $category)
-                    @if($category->parent_id == null)
+                    @foreach($subcategories as $category)
                     <tr>
+                        <td>{{$loop->iteration}}</td>
                         <td>{{$category->id}}</td>
-                        <td><a href="{{ route('admin.categories.subcategories', $category->id) }}"><strong>{{$category->name}}</strong></a></td>
+                        <td><a href="{{ route('admin.category.products', $category->id) }}"><strong>{{$category->name}}</strong></a></td>
                         <td>phần mô tả</td>
                         <td><a class="btn btn-info" href="{{ route('admin.categories.edit', $category->id) }}" data-toggle="tooltip" data-original-title="Chỉnh Sửa"><i  class="fa fa-edit"></i></a>
                         </td>
                         <td>
-                        	<a onclick="alert('Đây là danh mục gốc, bạn không thể xoá được')" class="btn btn-danger" href="#" data-toggle="tooltip" data-original-title="Chỉnh Sửa"><i  class="fa fa-edit"></i></a>
+                        	<form action="{{ route('admin.categories.destroy', $category->id) }}" method="POST" role="form">
+                                @csrf
+                                @method('DELETE')                   
+                                <button onclick="return confirm('Nếu bạn xoá danh mục này, tất cả sản phẩm, đơn hàng liên quan cũng sẽ bị xoá.\nBạn có chắc chắn muốn xoá danh mục này?')" data-toggle="tooltip" data-original-title="Xoá Product" type="submit" class="btn btn-danger"><i class="dripicons-trash"></i></button>
+                            </form>
                         </td>
                     </tr>
-                    @endif
                     @endforeach
                 	</tbody>
 

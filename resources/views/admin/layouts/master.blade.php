@@ -359,6 +359,10 @@
         <script src="{{ asset('admin/assets/js/jquery.core.js') }}"></script>
         <script src="{{ asset('admin/assets/js/jquery.app.js') }}"></script>
         
+
+        javascript by me
+        <script src="{{ asset('admin/assets/js/myJavascript.js') }}"></script>
+        
         @yield('codescript')
 
     </body>

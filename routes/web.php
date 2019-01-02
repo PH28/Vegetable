@@ -27,8 +27,10 @@ Route::group([
 function () {
 	Route::get('dashboard', 'HomeController@index')->name('dashboard'); //tức là 'admin.dashboard'
 	Route::resource('categories', 'CategoryController');
-	Route::resource('users', 'UserController');
+	Route::get('categories/{category}/subcategories', 'CategoryController@subcategories')->name('categories.subcategories');
+	Route::get('categories/{category}/products', 'CategoryController@productsByCategory')->name('category.products');
 	Route::resource('products', 'ProductController');
+	Route::resource('users', 'UserController');
 	Route::resource('orders', 'OrderController');
 	Route::resource('comments', 'CommentController');
 
@@ -46,4 +48,5 @@ Route::get('home', 'HomeController@index')->name('home');
 Route::get('products', 'ProductController@index')->name('products.index');
 Route::get('categories/{id}/products', 'ProductController@productByCategory')->name('categories.list-products');
 Route::get('products/{product}', 'ProductController@show')->name('products.show');
+Route::get('search', 'ProductController@search')->name('search');
 

@@ -26,12 +26,12 @@
 
                 <ul class="nav nav-pills navtab-bg nav-justified pull-in ">
                     <li class="nav-item">
-                        <a href="#home1" data-toggle="tab" aria-expanded="false" class="nav-link">
+                        <a href="#home1" data-toggle="tab" aria-expanded="true" class="nav-link">
                             <i class="fi-monitor mr-2"></i> Tất Cả
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#profile1" data-toggle="tab" aria-expanded="true" class="nav-link active">
+                        <a href="#profile1" data-toggle="tab" aria-expanded="false" class="nav-link active">
                             <i class="fi-head mr-2"></i>Đã Xác Nhận
                         </a>
                     </li>

@@ -104,6 +104,11 @@
 			
 		@endforeach			
 		<div class="clearfix"> </div>
+		<div class="row">
+			<div class="col-sm-6">
+				{{ $products->links() }}
+			</div>
+		</div>
 	</div>
 	</div>
 	

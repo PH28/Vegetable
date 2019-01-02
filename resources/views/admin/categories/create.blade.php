@@ -31,7 +31,7 @@
 						<option value="">Chọn danh mục cha</option>
 						<option value="">Danh mục gốc</option>
 						@foreach($categories as $cate)
-						@if($cate->children->count())
+						@if($cate->parent_id == null)
 							<option value="{{ $cate->id }}">{{ $cate->id }}. {{ $cate->name }}</option>
 						@endif
 						@endforeach

@@ -16,6 +16,16 @@
 <div class="container-fluid">
     <div class="row">
     	<div class="col-sm-8">
+            @if($message = Session::get('success'))
+                <div class="alert alert-success">
+                    <strong>{{ $message }}</strong>
+                </div>
+            @endif
+            @if($message = Session::get('danger'))
+                <div class="alert alert-danger">
+                    <strong>{{ $message }}</strong>
+                </div>
+            @endif
     	</div>
     	<div class="col-sm-4">
     		<a href="{{ route('admin.users.create') }}" class="btn btn-primary pull-right">Thêm mới Admin</a>
@@ -101,7 +111,7 @@
                             <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" role="form">
                                 @csrf
                                 @method('DELETE')                   
-                                <button data-toggle="tooltip" data-original-title="Xoá User" type="submit" class="btn btn-danger"><i class="dripicons-trash"></i></button>
+                                <button onclick="return confirm('Nếu bạn xoá người dùng này, tất cả đơn hàng và comment cũng sẽ bị xoá.\nBạn có chắc chắn muốn xoá người dùng này?')" data-toggle="tooltip" data-original-title="Xoá User" type="submit" class="btn btn-danger"><i class="dripicons-trash"></i></button>
                             </form>
                         </td>
                     </tr>
