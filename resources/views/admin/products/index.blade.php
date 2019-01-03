@@ -60,7 +60,7 @@
 	                @foreach($products as $product)
 					<tr>
 						<td>{{ $product->id }}</td>
-						<td><a href="{{ route('admin.products.show', $product->id) }}">{{ $product->name }}</a></td>
+						<td><a href="{{ route('admin.products.show', $product->id) }}"><strong>{{ $product->name }}</strong></a></td>
 						<td>{{ $product->price }}</td>
 						<td>{{ $product->quantity }}</td>
 						<td>{{ $product->created_at }}</td>

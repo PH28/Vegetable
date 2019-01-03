@@ -15,12 +15,10 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $categories = Order::with('children')->get();
-        return view('admin.orders.index', compact('orders'));
+        $orders = Order::all();
 
-        // foreach ($orders as $key => $order) {
-        //     echo $order->name;
-        //     echo '<br>';}
+
+        return view('admin.orders.index', compact('orders'));
     }
 
     /**
@@ -41,7 +39,9 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        Order::create($data);
+        return redirect()->route('admin.orders.index');
     }
 
     /**
@@ -52,9 +52,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        $data = $request->all();
-        Order::create($data);
-        return redirect()->route('admin.orders.index');
+        return view('admin.orders.show', compact('order'));
     }
 
     /**
@@ -91,7 +89,7 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        $orders->delete();
+        $order->delete();
         return redirect()->route('admin.orders.index');
     }
 }

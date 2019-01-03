@@ -35,7 +35,7 @@
 			
 		</div>
 		<div class="col-sm-2 ">
-			<a href="{{ route('admin.categories.create') }}" class="btn btn-primary">Thêm mới danh mục</a>
+			<a href="{{ route('admin.categories.create') }}" class="btn btn-custom waves-effect waves-light">Thêm mới danh mục</a>
 		</div>
 	</div>
 </div>
