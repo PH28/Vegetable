@@ -147,7 +147,7 @@
 										@csrf
 										@method('PUT')
 										<input type="hidden" name="status_id" value="3" class="form-control" id="" placeholder="Input field">
-										<button data-toggle="tooltip" data-original-title="Xác Nhận Hoàn Thành" type="submit" class="btn btn-success"><!-- <i class="  fa fa-calendar-check-o"></i> -->Đã Hoàn Thành</button>
+										<button data-toggle="tooltip" data-original-title="Xác Nhận Hoàn Thành" type="submit" class="btn btn-success"><!-- <i class="  fa fa-calendar-check-o"></i> -->Hoàn Thành</button>
 									</form>
 									</div>
 									<div class="col-sm-2">

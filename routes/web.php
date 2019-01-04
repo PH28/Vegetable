@@ -49,4 +49,5 @@ Route::get('products', 'ProductController@index')->name('products.index');
 Route::get('categories/{id}/products', 'ProductController@productByCategory')->name('categories.list-products');
 Route::get('products/{product}', 'ProductController@show')->name('products.show');
 Route::get('search', 'ProductController@search')->name('search');
+Route::post('comments', 'CommentController@store')->name('comments.store');
 
