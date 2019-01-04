@@ -14,6 +14,7 @@ $factory->define(App\Order::class, function (Faker $faker) {
     return [
     	'user_id' => $faker->randomElement($userIds),
     	'total' => $faker->numberBetween(30000, 99999999),
+        'fullname' =>$faker->name,
     	'address' => $faker->address,
     	'phone' => $faker->phoneNumber,
     	'type_payment_id' => $faker->randomElement($typePaymentIds),

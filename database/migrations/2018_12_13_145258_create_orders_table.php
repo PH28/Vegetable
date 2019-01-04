@@ -17,6 +17,7 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->decimal('total', 9, 0); //tong gia tien
+            $table->string('fullname');
             $table->string('address');
             $table->string('phone');
             $table->integer('type_payment_id')->unsigned()->nullable();  //phương thức thanh toán

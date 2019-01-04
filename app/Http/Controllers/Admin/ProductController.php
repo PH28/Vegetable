@@ -63,7 +63,7 @@ class ProductController extends Controller
             $product = Product::create($productData);    
         }
   
-        return redirect()->route('admin.products.index');
+        return redirect()->route('admin.products.index')->with('success', 'Sản phẩm đã được tạo mới thành công!!!');
     }
 
     /**
@@ -119,12 +119,15 @@ class ProductController extends Controller
                 'path' => $path
             ];
             $product->update($productData);
-            $product->images()->create($imageData);           
+            $product->images()->create($imageData);         
+        }
+        else{
+            $product->update($productData);
         }
 
-        $product->update($productData);
+        
     
-        return view('admin.products.show', compact('product'));
+        return redirect()->route('admin.products.show', compact('product'))->with('success', 'Sản phẩm đã được cập nhật thành công!!!');
     }
 
     /**
@@ -142,6 +145,6 @@ class ProductController extends Controller
         }
         
         $product->delete();
-        return redirect()->route('admin.products.index');
+        return redirect()->route('admin.products.index')->with('danger', 'Sản phẩm đã được xoá!!!');
     }
 }

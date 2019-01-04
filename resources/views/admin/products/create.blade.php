@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('title', 'Edit Product')
+@section('title', 'Create Product')
 
 @section('page', 'Products')
 
@@ -20,7 +20,7 @@
                             <form action="{{ route('admin.products.store') }}" method="POST" class="form-horizontal" role="form" enctype="multipart/form-data">
                                 @csrf
                                <div class="form-group row">
-                                    <label class="col-2 col-form-label" for="name">Tên Sản Phẩm</label>
+                                    <label class="col-2 col-form-label" for="name">Tên Sản Phẩm<span class="text-danger">*</span></label>
                                     <div class="col-10">
                                         <input name="name" id="name" type="text" class="form-control" placeholder="Nhập tên sản phẩm" value="{{old('name')}}">
                                         @if($errors->has('name'))
@@ -32,7 +32,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-2 col-form-label" for="price">Giá </label>
+                                    <label class="col-2 col-form-label" for="price">Giá <span class="text-danger">*</span></label>
                                     <div class="col-10">
                                         <input name="price" type="number" id="price" class="form-control" placeholder="Nhập giá" value="{{old('price')}}">
                                         @if($errors->has('price'))
@@ -45,7 +45,7 @@
                                 
 
                                 <div class="form-group row">
-                                    <label class="col-2 col-form-label" >Số Lượng</label>
+                                    <label class="col-2 col-form-label" >Số Lượng<span class="text-danger">*</span></label>
                                     <div class="col-10">
                                         <input name="quantity" type="number" id="quantity"  class="form-control" placeholder="Số Lượng" value="{{old('quantity')}}">
                                         @if($errors->has('quantity'))
@@ -57,7 +57,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-2 col-form-label">Mô Tả</label>
+                                    <label class="col-2 col-form-label">Mô Tả<span class="text-danger">*</span></label>
                                     <div class="col-10">
                                         <textarea name="description"  class="form-control" rows="10" placeholder="Nhập mô tả sản phẩm">{{old('description')}}</textarea>
                                         @if($errors->has('description'))
@@ -69,7 +69,7 @@
                                 </div>
                                 
                                 <div class="form-group row">
-                                    <label class="col-2 col-form-label">Danh Mục</label>
+                                    <label class="col-2 col-form-label">Danh Mục<span class="text-danger">*</span></label>
                                     <div class="col-10">
                                         <select name="category_id" class="form-control">
                                             <option selected>Chọn danh mục</option>
@@ -101,8 +101,11 @@
                                     </div>
                                 </div>
 
-                                
-                                <button type="submit" class="btn btn-primary">Tạo Sản Phẩm</button>
+                                <div class="form-group text-right m-b-0">                                
+                                    <button class="btn btn-custom waves-effect waves-light" type="submit" class="btn btn-primary">Tạo Sản Phẩm</button>
+
+                                    <button type="button" class="btn btn-light waves-effect m-l-5" onclick="window.location='{{ URL::previous() }}'">Cancel</button>
+                                </div>
 
                             </form>
                         </div>

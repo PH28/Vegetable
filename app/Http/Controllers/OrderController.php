@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -14,14 +15,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::with('children')->get();
-        /*foreach ($categories as $key => $category) {
-            echo $category->name;
-            echo '<br>';
-        }*/
-        return view('admin.orders.index', compact('orders'));
-        /*$orders = Order::with('images')->paginate(10);
-        return view('admin.orders.index', compact('orders'));*/
+        
+
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Category;
+use App\Product;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -24,6 +25,18 @@ class CategoryController extends Controller
         return view('admin.categories.index', compact('categories'));
     }
 
+    public function subcategories(Category $category)
+    {
+        $subcategories = $category->children;
+        return view('admin.categories.subcategories', compact('subcategories', 'category'));
+    }
+
+    public function productsByCategory(Category $category)
+    {
+        $productsByCategory = $category->products;
+        return view('admin.products.productsByCategory', compact('productsByCategory', 'category'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -42,11 +55,18 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
+        $parent_id = $request->parent_id;
         $data = $request->all();
         Category::create($data);
-        return redirect()->route('admin.categories.index');
+        if ($parent_id == null) {
+            return redirect()->route('admin.categories.index')->with('success', 'Tuyêt!! Bạn vừa tạo mới một danh mục, hãy cập nhập các sản phẩm mới!');
+        }
+        else{
+            return redirect()->route('admin.categories.subcategories', $parent_id)->with('success', 'Tuyêt!! Bạn vừa tạo mới một danh mục, hãy cập nhập các sản phẩm mới!');
+       }
+        
     }
 
     /**
@@ -80,7 +100,7 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoryRequest $request, Category $category)
     {
         $data = $request->all();
         $category->update($data);
@@ -95,7 +115,9 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+
+        $parent_id = $category->parent_id;
         $category->delete();
-        return redirect()->route('admin.categories.index');
+        return redirect()->route('admin.categories.subcategories', $parent_id)->with('danger', 'Bạn vừa xoá một danh mục');
     }
 }

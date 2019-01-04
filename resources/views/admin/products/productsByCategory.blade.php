@@ -40,7 +40,7 @@
 	<div class="row">
 	    <div class="col-12">
 	        <div class="card-box table-responsive">
-	            <h4 class="m-t-0 header-title">List Sản Phấm</h4>
+	            <h4 class="m-t-0 header-title">Sẩn phẩm của danh mục <strong>{{ $category->name }}</strong></h4>
 
 	            <table id="datatable" class="table table-bordered">
 	                <thead>
@@ -57,7 +57,7 @@
 
 
 	                <tbody>
-	                @foreach($products as $product)
+	                @foreach($productsByCategory as $product)
 					<tr>
 						<td>{{ $product->id }}</td>
 						<td><a href="{{ route('admin.products.show', $product->id) }}"><strong>{{ $product->name }}</strong></a></td>

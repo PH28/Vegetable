@@ -29,7 +29,7 @@
                                 @csrf
                                 @method('PUT')
                                <div class="form-group row">
-                                    <label class="col-2 col-form-label" for="name">Tên Sản Phẩm</label>
+                                    <label class="col-2 col-form-label" for="name">Tên Sản Phẩm<span class="text-danger">*</span></label>
                                     <div class="col-10">
                                         <input name="name" id="name" type="text" class="form-control" placeholder="Nhập tên sản phẩm" value="{{ $product->name }}">
                                         @if($errors->has('name'))
@@ -41,7 +41,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-2 col-form-label" for="price">Giá </label>
+                                    <label class="col-2 col-form-label" for="price">Giá <span class="text-danger">*</span></label>
                                     <div class="col-10">
                                         <input name="price" type="number" id="price" class="form-control" placeholder="Nhập giá" value="{{ $product->price }}">
                                         @if($errors->has('price'))
@@ -54,7 +54,7 @@
                                 
 
                                 <div class="form-group row">
-                                    <label class="col-2 col-form-label" >Số Lượng</label>
+                                    <label class="col-2 col-form-label" >Số Lượng<span class="text-danger">*</span></label>
                                     <div class="col-10">
                                         <input name="quantity" type="number" id="quantity"  class="form-control" placeholder="Số Lượng" value="{{ $product->quantity }}">
                                         @if($errors->has('quantity'))
@@ -66,7 +66,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-2 col-form-label">Mô Tả</label>
+                                    <label class="col-2 col-form-label">Mô Tả<span class="text-danger">*</span></label>
                                     <div class="col-10">
                                         <textarea name="description"  class="form-control" rows="10" placeholder="Nhập mô tả sản phẩm">{{ $product->description }}</textarea>
                                         @if($errors->has('description'))
@@ -78,7 +78,7 @@
                                 </div>
                                 
                                 <div class="form-group row">
-                                    <label class="col-2 col-form-label">Danh Mục</label>
+                                    <label class="col-2 col-form-label">Danh Mục<span class="text-danger">*</span></label>
                                     <div class="col-10">
                                         <select name="category_id" class="form-control">
                                             <option selected>Chọn danh mục</option>
@@ -106,7 +106,11 @@
                                 </div>
 
                                 
-                                <button type="submit" class="btn btn-primary">Cập Nhật Sản Phẩm</button>
+                                <div class="form-group text-right m-b-0">                                
+                                    <button class="btn btn-custom waves-effect waves-light" type="submit" class="btn btn-primary">Cập Nhật Sản Phẩm</button>
+
+                                    <button type="button" class="btn btn-light waves-effect m-l-5" onclick="window.location='{{ URL::previous() }}'">Cancel</button>
+                                </div>
 
                             </form>
                         </div>

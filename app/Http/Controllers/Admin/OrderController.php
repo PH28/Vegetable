@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;  
 
 use App\Order;
+use App\TypePayment;
+use App\Status;
+use App\Http\Requests\OrderRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;   
 
@@ -15,12 +18,12 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $categories = Order::with('children')->get();
-        return view('admin.orders.index', compact('orders'));
+        $orders_pending = Order::where('status_id', 1)->get();
+        $orders_approved = Order::where('status_id', 2)->get();
+        $orders_completed = Order::where('status_id', 3)->get();
+        $orders_cancelled = Order::where('status_id', 4)->get();
 
-        // foreach ($orders as $key => $order) {
-        //     echo $order->name;
-        //     echo '<br>';}
+        return view('admin.orders.index', compact('orders_pending', 'orders_approved', 'orders_completed', 'orders_cancelled'));
     }
 
     /**
@@ -30,7 +33,9 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        $type_payments = TypePayment:: all();
+        $statuses = Status::all();
+        return view('admin.orders.create', compact('type_payments', 'statuses'));
     }
 
     /**
@@ -39,9 +44,11 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OrderRequest $request)
     {
-        //
+        $data = $request->all();
+        Order::create($data);
+        return redirect()->route('admin.orders.index')->with('success', 'Tuyệt!!! Bạn vừa tạo thành công một đơn hàng!');
     }
 
     /**
@@ -52,9 +59,8 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        $data = $request->all();
-        Order::create($data);
-        return redirect()->route('admin.orders.index');
+        
+        return view('admin.orders.show', compact('order'));
     }
 
     /**
@@ -65,8 +71,9 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        $orders = Order::all();
-        return view('admin.orders.edit', compact('order', 'orders'));
+        $type_payments = TypePayment:: all();
+        $statuses = Status::all();
+        return view('admin.orders.edit', compact('order', 'type_payments', 'statuses'));
     }
 
     /**
@@ -76,11 +83,11 @@ class OrderController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(OrderRequest $request, Order $order)
     {
         $data = $request->all();
-        $category->update($data);
-        return redirect()->route('admin.orders.show', compact('orders'));
+        $order->update($data);
+        return redirect()->route('admin.orders.show', compact('order'));
     }
 
     /**
@@ -91,7 +98,7 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        $orders->delete();
+        $order->delete();
         return redirect()->route('admin.orders.index');
     }
 }
