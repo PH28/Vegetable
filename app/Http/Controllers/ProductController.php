@@ -25,7 +25,7 @@ class ProductController extends Controller
     public function productByCategory($id){
         $category = Category::find($id);
         $productsByCategory = Product::where('category_id', $id)->paginate(4);
-        $otherCategories = Category::where([['parent_id', $category->parent_id], ['id', '<>', $category->id]])->inRandomOrder()->paginate(2)->take(2);
+        $otherCategories = Category::where([['parent_id', $category->parent_id], ['id', '<>', $category->id]])->inRandomOrder()->take(2)->get();
         
         return view('users.products.productByCategory', compact('productsByCategory', 'category', 'otherCategories'));
     }
@@ -113,7 +113,7 @@ class ProductController extends Controller
         $search = $request->get('search');
         $products = Product::where('name', 'like' , '%'.$search.'%')->paginate(8);
         //dd($search);
-        return view('users.products.index', compact('products'));
+        return view('users.products.search', compact('products'));
     }
 
 

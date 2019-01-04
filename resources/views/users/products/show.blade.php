@@ -15,23 +15,26 @@
 		@endforeach
 	</div>
 	<div class="col-md-8 agileinfo_single_right">
-		<div class="rating1">
-			<span class="starRating">
-				<input id="rating5" type="radio" name="rating" value="5" {{ $rating ==5 ? 'checked' : '' }}>
-				<label for="rating5">5</label>
-				<input id="rating4" type="radio" name="rating" value="4" {{ $rating ==4 ? 'checked' : '' }}>
-				<label for="rating4">4</label>
-				<input id="rating3" type="radio" name="rating" value="3" {{ $rating ==3 ? 'checked' : '' }}>
-				<label for="rating3">3</label>
-				<input id="rating2" type="radio" name="rating" value="2" {{ $rating ==2 ? 'checked' : '' }}>
-				<label for="rating2">2</label>
-				<input id="rating1" type="radio" name="rating" value="1" {{ $rating ==1 ? 'checked' : '' }}>
-				<label for="rating1">1</label>
+		<div class="rating">
+			<span class="">
+				<!-- @for($i=5; $i>=1; $i--)
+				<input id="rating{{$i}}" type="radio" name="" value="{{$i}}" {{ $rating ==$i ? 'checked' : '' }}>
+				<label for="rating{{$i}}">{{$i}}</label>
+				@endfor -->
+				<label for="">
+					@for($j=1; $j<=$rating; $j++)
+                    <i style="color: #50c8f5;" class="fa fa-star"></i>
+                    @endfor
+                    @for($i=1; $i<=(5-$rating); $i++)
+                    <i class="fa fa-star-o"></i>
+                    @endfor
+                    
+				</label>
 			</span>
 		</div>
 		<div class="w3agile_description">
 			<h4>Description :</h4>
-			<p>{{ $product->description }}</p>
+			<p>{{ $product->description }} </p>
 		</div>
 		<div class="snipcart-item block">
 			<div class="snipcart-thumb agileinfo_single_right_snipcart">
@@ -61,23 +64,66 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-10">
-            <form action="" method="POST" role="form">
+            <form action="{{ route('comments.store') }}" method="POST" role="form">
+            	@csrf
                 <legend>Không gian Comment Test</legend>
+                @if($errors->has('user_id'))
+                    <div class="alert alert-danger">
+                        <span>{{ $errors->first('user_id') }}</span>
+                    </div>
+                @endif
             
                 <div class="form-group">
                     <label for="">Tiêu Đề</label>
-                    <input type="text" class="form-control" id="" placeholder="Input field">
+                    <input name="title" type="text" class="form-control" id="" placeholder="Input field" value="{{old('title')}}">
+                    @if($errors->has('title'))
+                    <div class="alert alert-danger">
+                        <span>{{ $errors->first('title') }}</span>
+                    </div>
+               		@endif
                 </div>
+                <div>
+                	<label for="">Rating:</label>
+                </div>
+                <div class="rating">
+					<span class="">
+						@for($i=1; $i<=5; $i++)
+						<input id="" type="radio" name="rating" value="{{$i}}" {{ $i == 4 ? 'checked' : '' }}>
+						<label for="">
+							@for($j=1; $j<=$i; $j++)
+                            <i style="color: #50c8f5;" class="fa fa-star"></i>
+                            @endfor
+                            @for($j=1; $j<=(5-$i); $j++)
+		                    <i class="fa fa-star-o"></i>
+		                    @endfor
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						</label>
+						@endfor
+					</span>
+				</div>
+				<div>
+					@if(Auth::check())
+					<input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+					@else
+					<input type="hidden" name="user_id" value="">
+					@endif
+					<input type="hidden" name="product_id" value="{{$product->id}}">
+				</div>
                 <div class="form-group">
                     <label for="comment">Comment:</label>
-                    <textarea class="form-control" rows="5" id="comment"></textarea>
+                    <textarea name="content" class="form-control" rows="5" id="comment">{{old('content')}}</textarea>
+                    @if($errors->has('content'))
+                    <div class="alert alert-danger">
+                        <span>{{ $errors->first('content') }}</span>
+                    </div>
+               		@endif
                 </div> 
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-8">
+        <div class="col-sm-10">
             <h2 class="page-header">Comments</h2>
             <section class="comment-list">
                 <!-- Comment -->
@@ -86,8 +132,8 @@
                 <div class="col-md-2 col-sm-2 hidden-xs">
                   <figure class="thumbnail">
                     <img class="img-responsive" width="100%" src="{{ asset($comment->user->avatar ? $comment->user->avatar : 'http://www.tangoflooring.ca/wp-content/uploads/2015/07/user-avatar-placeholder.png')}}" />
-                    <figcaption class="text-center font-weight-bold text-capitalize">{{ $comment->user->username }}</figcaption>
                   </figure>
+                  <figcaption class="text-center font-weight-bold text-capitalize"><strong>{{ $comment->user->username }}</strong></figcaption>
                 </div>
                 <div class="col-md-10 col-sm-10">
                   <div class="panel panel-default arrow left">

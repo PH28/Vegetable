@@ -85,7 +85,7 @@
                                 <a href="javascript: void(0);"><i class="fa fa-shopping-basket"></i><span> Quản Lý Đơn Hàng </span> <span class="menu-arrow"></span></a>
                                 <ul class="nav-second-level" aria-expanded="false">
                                     <li><a href="{{ route('admin.orders.index') }}">Danh Sách Đơn Hàng</a></li>
-                                    <li><a href="layouts-small-menu.html">Thêm Đơn Hàng</a></li>
+                                    <li><a href="{{ route('admin.orders.create') }}">Thêm Đơn Hàng</a></li>
                                 </ul>
                             </li>
 

@@ -67,7 +67,7 @@
 
 <div class="w3ls_w3l_banner_nav_right_grid">
 	<div class="container">
-	<h3>Sản Phẩm cũng nhóm</h3>
+	<h3>Sản Phẩm cùng nhóm</h3>
 	@foreach($otherCategories as $category)
 	<div class="w3ls_w3l_banner_nav_right_grid1">
 		<h6>{{$category->name}}</h6>

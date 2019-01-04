@@ -61,7 +61,7 @@
 
 <div class="w3ls_w3l_banner_nav_right_grid">
 	<div class="container">
-	<h3>Popular Brands</h3>
+	<h3>Sản phẩm tìm được</h3>
 	<div class="w3ls_w3l_banner_nav_right_grid1">
 		<h6></h6>
 		@foreach($products as $product)
