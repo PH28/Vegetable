@@ -23,20 +23,21 @@
 
 
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-6 offset-1">
                         <div class="pull-left mt-3">
-                            <p><b>Hello, Stanley Jones</b></p>
+                            <p><b>Hello, {{ $order->fullname }}</b></p>
                             <p class="text-muted">Thanks a lot because you keep purchasing our products. Our company
                                 promises to provide high quality products for you as well as outstanding
                                 customer service for every transaction. </p>
                         </div>
 
                     </div><!-- end col -->
-                    <div class="col-4 offset-2">
+                    <div class="col-4 ">
                         <div class="mt-3 pull-right">
                             <p class="m-b-10"><strong>Order Date: </strong> {{ $order->created_at }}</p>
-                            <p class="m-b-10"><strong>Order Status: </strong> <span class="badge badge-success">{{ $order->status->name }}</span></p>
+                            <p class="m-b-10"><strong>Order Status: </strong> <span class="badge badge-{{ $order->status_id == 1 ? 'warning' : ($order->status_id == 2 ? 'info' : ($order->status_id == 3 ? 'success' : 'danger')) }}">{{ $order->status->name }}</span></p>
                             <p class="m-b-10"><strong>Order ID: </strong> #{{ $order->id }}</p>
+                            <p class="m-b-10"><strong>Hình Thức Thanh Toán: </strong> {{ $order->typePayment->name }}</p>
                         </div>
                     </div><!-- end col -->
                 </div>
@@ -45,11 +46,11 @@
                 <div class="row mt-3">
                     <div class="col-6">
                         <h6>Shipping Address</h6>
-                        {{ $order->address }}
-
                         <address class="line-h-24">
+                        	<strong>{{ $order->fullname }}</strong><br>
+                        	{{ $order->address }} <br>
                             
-                            <abbr title="Phone">P:</abbr> {{$order->phone}}
+                            <abbr title="Phone Number">Phone:</abbr> {{$order->phone}}
                         </address>
                     </div>
 
@@ -71,6 +72,7 @@
                                     <th class="text-right">Total</th>
                                 </tr></thead>
                                 <tbody>
+                                	<?php $subtotal = 0; ?>
                                 @foreach($order->orderDetails as $orderDetail)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
@@ -79,6 +81,8 @@
                                     <td>{{ $orderDetail->product->price }}</td>
                                     <td class="text-right">{{ $orderDetail->product->price*$orderDetail->quantity }}</td>
                                 </tr>
+                                <?php $subtotal += $orderDetail->product->price*$orderDetail->quantity; ?>
+
                                 @endforeach
                                 </tbody>
                             </table>
@@ -91,30 +95,77 @@
                             <h6 class="text-muted">Notes:</h6>
 
                             <small>
-                                All accounts are to be paid within 7 days from receipt of
-                                invoice. To be paid by cheque or credit card or direct payment
-                                online. If account is not paid within 7 days the credits details
-                                supplied as confirmation of work undertaken will be charged the
-                                agreed quoted fee noted above.
+                                {{$order->note}}
                             </small>
                         </div>
 
                     </div>
                     <div class="col-6">
                         <div class="float-right">
-                            <p><b>Sub-total:</b> $4120.00</p>
-                            <p><b>VAT (12.5):</b> $515</p>
-                            <h3>$4635.00 USD</h3>
+                            <p><b>Sub-total:</b> {{$subtotal}}</p>
+                            <p><b>VAT (10%):</b> {{$subtotal*0.1}}</p>
+                            <h3>{{ $subtotal*1.1 }} <span>VNĐ</span></h3>
                         </div>
                         <div class="clearfix"></div>
                     </div>
                 </div>
 
                 <div class="hidden-print mt-4 mb-4">
+                	
                     <div class="text-right">
-                        <a href="javascript:window.print()" class="btn btn-primary waves-effect waves-light"><i class="fa fa-print m-r-5"></i> Print</a>
-                        <a href="#" class="btn btn-info waves-effect waves-light">Submit</a>
-                    </div>
+                    	<div class="row">
+	                    	<div class="col-sm-2 offset-sm-3">
+	                        <a href="javascript:window.print()" class="btn btn-primary waves-effect waves-light"><i class="fa fa-print m-r-5"></i> Print</a>
+	                        </div>
+	                        @switch($order->status_id)
+		                        @case(1)
+			                        <!-- <a href="#" class="btn btn-info waves-effect waves-light">Submit</a> -->
+			                        <div class="col-sm-2">
+			                        <form action="{{ route('admin.orders.update', $order->id) }}" method="POST" role="form">
+										@csrf
+										@method('PUT')
+										<input type="hidden" name="status_id" value="2" class="form-control" id="" placeholder="Input field">
+										<button data-toggle="tooltip" data-original-title="Duyệt Đơn" type="submit" class="btn btn-success"><!-- <i class="  fa fa-calendar-check-o"></i> -->Duyệt Đơn</button>
+									</form>
+									</div>
+                                    <div class="col-sm-2">
+                                        <a class="btn btn-warning" href="{{ route('admin.orders.edit', $order->id) }}" data-toggle="tooltip" data-original-title="Chỉnh Sửa"><i  class="fa fa-edit"></i>Sửa Đơn</a>
+                                    </div>
+									<div class="col-sm-2">
+									<form action="{{ route('admin.orders.update', $order->id) }}" method="POST" role="form">
+										@csrf
+										@method('PUT')
+										<input type="hidden" name="status_id" value="4" class="form-control" id="" placeholder="Input field">
+										<button data-toggle="tooltip" data-original-title="Huỷ Đơn" type="submit" class="btn btn-danger"><!-- <i class="  fa fa-calendar-check-o"></i> -->Huỷ Đơn</button>
+									</form>
+									</div>
+								@break
+
+								@case(2)
+									<div class="col-sm-2">
+			                        <form action="{{ route('admin.orders.update', $order->id) }}" method="POST" role="form">
+										@csrf
+										@method('PUT')
+										<input type="hidden" name="status_id" value="3" class="form-control" id="" placeholder="Input field">
+										<button data-toggle="tooltip" data-original-title="Xác Nhận Hoàn Thành" type="submit" class="btn btn-success"><!-- <i class="  fa fa-calendar-check-o"></i> -->Đã Hoàn Thành</button>
+									</form>
+									</div>
+									<div class="col-sm-2">
+									<form action="{{ route('admin.orders.update', $order->id) }}" method="POST" role="form">
+										@csrf
+										@method('PUT')
+										<input type="hidden" name="status_id" value="4" class="form-control" id="" placeholder="Input field">
+										<button data-toggle="tooltip" data-original-title="Huỷ Đơn" type="submit" class="btn btn-danger"><!-- <i class="  fa fa-calendar-check-o"></i> -->Huỷ Đơn</button>
+									</form>
+									</div>
+								@break
+
+								@case(3)
+									
+								@break
+							@endswitch
+	                    </div>
+                	</div>
                 </div>
             </div>
 

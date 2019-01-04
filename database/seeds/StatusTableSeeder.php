@@ -13,8 +13,9 @@ class StatusTableSeeder extends Seeder
     public function run()
     {
         Status::create(['name' => 'Pending']);
+        Status::create(['name' => 'Approved']);
         Status::create(['name' => 'Completed']);
-        Status::create(['name' => 'Cancel']);
+        Status::create(['name' => 'Cancelled']);
 
     }
 }
