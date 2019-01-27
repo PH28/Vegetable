@@ -26,12 +26,24 @@
                     <div class="col-6 offset-1">
                         <div class="pull-left mt-3">
                             <p><b>Hello, {{ $order->fullname }}</b></p>
-                            <p class="text-muted">Thanks a lot because you keep purchasing our products. Our company
-                                promises to provide high quality products for you as well as outstanding
-                                customer service for every transaction. </p>
+                            <p class="text-muted"> </p>
                         </div>
 
                     </div><!-- end col -->
+                    
+                </div>
+                <!-- end row -->
+
+                <div class="row mt-3">
+                    <div class="col-6 offset-1">
+                        <h6>Shipping Address</h6>
+                        <address class="line-h-24">
+                        	<strong>{{ $order->fullname }}</strong><br>
+                        	{{ $order->address }} <br>
+                            
+                            <abbr title="Phone Number">Phone:</abbr> {{$order->phone}}
+                        </address>
+                    </div>
                     <div class="col-4 ">
                         <div class="mt-3 pull-right">
                             <p class="m-b-10"><strong>Order Date: </strong> {{ $order->created_at }}</p>
@@ -41,35 +53,18 @@
                         </div>
                     </div><!-- end col -->
                 </div>
-                <!-- end row -->
-
-                <div class="row mt-3">
-                    <div class="col-6">
-                        <h6>Shipping Address</h6>
-                        <address class="line-h-24">
-                        	<strong>{{ $order->fullname }}</strong><br>
-                        	{{ $order->address }} <br>
-                            
-                            <abbr title="Phone Number">Phone:</abbr> {{$order->phone}}
-                        </address>
-                    </div>
-
-                    <div class="col-6">
-                       
-
-                    </div>
-                </div>
 
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-10 offset-sm-1">
                         <div class="table-responsive">
                             <table class="table mt-4">
                                 <thead>
                                 <tr><th>#</th>
                                     <th>Item</th>
+                                    <th>Images</th>
                                     <th>Quantity</th>
                                     <th>Unit Cost</th>
-                                    <th class="text-right">Total</th>
+                                    <th class="text-right">Subtotal</th>
                                 </tr></thead>
                                 <tbody>
                                 	<?php $subtotal = 0; ?>
@@ -77,20 +72,25 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td><strong>{{ $orderDetail->product->name }}</strong></td>
+                                    <td><img width="100px" src="{{ asset($orderDetail->product->images->first()->path) }}" alt=""></td>
                                     <td>{{ $orderDetail->quantity }}</td>
-                                    <td>{{ $orderDetail->product->price }}</td>
-                                    <td class="text-right">{{ $orderDetail->product->price*$orderDetail->quantity }}</td>
+                                    <td>{{ number_format($orderDetail->product->price) }}</td>   
+                                    <td class="text-right">{{ number_format($orderDetail->product->price*$orderDetail->quantity) }}</td>
                                 </tr>
                                 <?php $subtotal += $orderDetail->product->price*$orderDetail->quantity; ?>
 
                                 @endforeach
                                 </tbody>
+                                <tfoot>
+                                    <td colspan="5" class="text-right"><h3>Total:</h3></td>
+                                    <td><h3>{{ number_format($subtotal) }} <span>VNĐ</span></h3></td>
+                                </tfoot>
                             </table>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-6 offset-1">
                         <div class="clearfix pt-5">
                             <h6 class="text-muted">Notes:</h6>
 
@@ -99,14 +99,6 @@
                             </small>
                         </div>
 
-                    </div>
-                    <div class="col-6">
-                        <div class="float-right">
-                            <p><b>Sub-total:</b> {{$subtotal}}</p>
-                            <p><b>VAT (10%):</b> {{$subtotal*0.1}}</p>
-                            <h3>{{ $subtotal*1.1 }} <span>VNĐ</span></h3>
-                        </div>
-                        <div class="clearfix"></div>
                     </div>
                 </div>
 
@@ -124,8 +116,8 @@
 			                        <form action="{{ route('admin.orders.update', $order->id) }}" method="POST" role="form">
 										@csrf
 										@method('PUT')
-										<input type="hidden" name="status_id" value="2" class="form-control" id="" placeholder="Input field">
-										<button data-toggle="tooltip" data-original-title="Duyệt Đơn" type="submit" class="btn btn-success"><!-- <i class="  fa fa-calendar-check-o"></i> -->Duyệt Đơn</button>
+										<input type="hidden" name="status_id" value="2" class="form-control" id="" >
+										<button data-toggle="tooltip" data-original-title="Duyệt Đơn" type="submit" class="btn btn-success">Duyệt Đơn</button>
 									</form>
 									</div>
                                     <div class="col-sm-2">
@@ -135,8 +127,8 @@
 									<form action="{{ route('admin.orders.update', $order->id) }}" method="POST" role="form">
 										@csrf
 										@method('PUT')
-										<input type="hidden" name="status_id" value="4" class="form-control" id="" placeholder="Input field">
-										<button data-toggle="tooltip" data-original-title="Huỷ Đơn" type="submit" class="btn btn-danger"><!-- <i class="  fa fa-calendar-check-o"></i> -->Huỷ Đơn</button>
+										<input type="hidden" name="status_id" value="4" class="form-control" id="" >
+										<button data-toggle="tooltip" data-original-title="Huỷ Đơn" type="submit" class="btn btn-danger">Huỷ Đơn</button>
 									</form>
 									</div>
 								@break
@@ -147,7 +139,7 @@
 										@csrf
 										@method('PUT')
 										<input type="hidden" name="status_id" value="3" class="form-control" id="" placeholder="Input field">
-										<button data-toggle="tooltip" data-original-title="Xác Nhận Hoàn Thành" type="submit" class="btn btn-success"><!-- <i class="  fa fa-calendar-check-o"></i> -->Hoàn Thành</button>
+										<button data-toggle="tooltip" data-original-title="Xác Nhận Hoàn Thành" type="submit" class="btn btn-success">Hoàn Thành</button>
 									</form>
 									</div>
 									<div class="col-sm-2">
@@ -155,14 +147,11 @@
 										@csrf
 										@method('PUT')
 										<input type="hidden" name="status_id" value="4" class="form-control" id="" placeholder="Input field">
-										<button data-toggle="tooltip" data-original-title="Huỷ Đơn" type="submit" class="btn btn-danger"><!-- <i class="  fa fa-calendar-check-o"></i> -->Huỷ Đơn</button>
+										<button data-toggle="tooltip" data-original-title="Huỷ Đơn" type="submit" class="btn btn-danger">Huỷ Đơn</button>
 									</form>
 									</div>
 								@break
 
-								@case(3)
-									
-								@break
 							@endswitch
 	                    </div>
                 	</div>

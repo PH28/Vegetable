@@ -22,9 +22,14 @@
                             <h5>{{session()->get('status')}}</h5>
                         </div>
                         @endif
+                        @if(session()->get('danger'))
+                        <div class="alert alert-danger">
+                            <h5>{{session()->get('danger')}}</h5>
+                        </div>
+                        @endif
 
                         <div class="form-group row">
-                            <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="email" class="col-sm-4 col-form-label ">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-8">
                                 <input type="email" name="email" placeholder="Email" required=" " value="{{ old('email') }}">
@@ -38,7 +43,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <label for="password" class="col-md-4 col-form-label ">{{ __('Password') }}</label>
 
                             <div class="col-md-8">
                                 <input type="password" name="password" placeholder="Password" required=" ">
@@ -52,7 +57,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
+                            <div class="col-md-6 ">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 

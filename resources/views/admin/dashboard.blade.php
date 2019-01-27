@@ -11,69 +11,50 @@
     <div class="row">
         <div class="col-12">
             <div class="card-box">
-                <h4 class="header-title mb-4">Account Overview</h4>
+                <h4 class="header-title">Manage </h4>
 
-                <div class="row">
-                    <div class="col-sm-6 col-lg-6 col-xl-3">
-                        <div class="card-box mb-0 widget-chart-two">
-                            <div class="float-right">
-                                <input data-plugin="knob" data-width="80" data-height="80" data-linecap=round
-                                       data-fgColor="#0acf97" value="37" data-skin="tron" data-angleOffset="180"
-                                       data-readOnly=true data-thickness=".1"/>
+                    <div class="text-center mt-4 mb-4">
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-3">
+                                <a href="{{route('admin.orders.index')}}">
+                                    <div class="card-box widget-flat border-custom bg-custom text-white">
+                                        <i class="fi-layers "></i>
+                                        <h1 class="m-b-10">{{$total_new_orders}}</h3>
+                                        <p class="text-uppercase m-b-5 font-15 font-600">Đơn hàng mới</p>
+                                    </div>
+                                </a>
                             </div>
-                            <div class="widget-chart-two-content">
-                                <p class="text-muted mb-0 mt-2">Daily Sales</p>
-                                <h3 class="">$35,715</h3>
+                            <div class="col-xs-6 col-sm-3">
+                                <a href="{{route('admin.comments.index')}}">
+                                    <div class="card-box bg-primary widget-flat border-primary text-white">
+                                        <i class="fi-speech-bubble"></i>
+                                        <h1 class="m-b-10">{{$total_new_comments}}</h3>
+                                        <p class="text-uppercase m-b-5 font-15 font-600">Bình luận mới</p>
+                                    </div>
+                                </a>
                             </div>
-
+                            <div class="col-xs-6 col-sm-3">
+                                <a href="{{route('admin.users.index')}}">
+                                    <div class="card-box widget-flat border-success bg-success text-white">
+                                        <i class="fi-head"></i>
+                                        <h1 class="m-b-10">{{$total_users}}</h3>
+                                        <p class="text-uppercase m-b-5 font-15 font-600">Khách Hàng</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-xs-6 col-sm-3">
+                                <a href="{{route('admin.products.index')}}">
+                                    <div class="card-box bg-danger widget-flat border-danger text-white">
+                                        <i class="fi-box"></i>
+                                        <h1 class="m-b-10">{{$total_products}}</h3>
+                                        <p class="text-uppercase m-b-5 font-15 font-600">Sản phẩm</p>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
                     </div>
+            
 
-                    <div class="col-sm-6 col-lg-6 col-xl-3">
-                        <div class="card-box mb-0 widget-chart-two">
-                            <div class="float-right">
-                                <input data-plugin="knob" data-width="80" data-height="80" data-linecap=round
-                                       data-fgColor="#f9bc0b" value="92" data-skin="tron" data-angleOffset="180"
-                                       data-readOnly=true data-thickness=".1"/>
-                            </div>
-                            <div class="widget-chart-two-content">
-                                <p class="text-muted mb-0 mt-2">Sales Analytics</p>
-                                <h3 class="">$97,511</h3>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-6 col-xl-3">
-                        <div class="card-box mb-0 widget-chart-two">
-                            <div class="float-right">
-                                <input data-plugin="knob" data-width="80" data-height="80" data-linecap=round
-                                       data-fgColor="#f1556c" value="14" data-skin="tron" data-angleOffset="180"
-                                       data-readOnly=true data-thickness=".1"/>
-                            </div>
-                            <div class="widget-chart-two-content">
-                                <p class="text-muted mb-0 mt-2">Statistics</p>
-                                <h3 class="">$954</h3>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-6 col-xl-3">
-                        <div class="card-box mb-0 widget-chart-two">
-                            <div class="float-right">
-                                <input data-plugin="knob" data-width="80" data-height="80" data-linecap=round
-                                       data-fgColor="#2d7bf4" value="60" data-skin="tron" data-angleOffset="180"
-                                       data-readOnly=true data-thickness=".1"/>
-                            </div>
-                            <div class="widget-chart-two-content">
-                                <p class="text-muted mb-0 mt-2">Total Revenue</p>
-                                <h3 class="">$32,540</h3>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
                 <!-- end row -->
             </div>
         </div>

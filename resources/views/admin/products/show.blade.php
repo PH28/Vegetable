@@ -43,8 +43,9 @@
                     <div class="">
                         <h5 class=" m-b-5">ID: <span class="text-custom">{{ $product->id }}</span> </h5>
                         <h5 class=" m-b-5">Danh Mục: <a href="{{ route('admin.category.products', $product->category->id ) }}"><span class="text-custom">{{ $product->category->name }}</span></a> </h5>
-                        <p><b>Giá: {{ $product->price }}</b></p>
-                        <p><b>Số Lượng: {{ $product->quantity }}</b></p>
+                        <p><b>Giá: {{ number_format($product->price) }} vnđ</b></p>
+                        <p><b>Tổng: {{ $product->quantity }} </b></p>
+                        <p><b>Tồn kho: {{ $product->quantity - $quantities_sold }} </b></p>
                         <p><b>Ngày Tạo: {{ $product->created_at }}</b></p>
                         <h4><b>Mô Tả</b></h4>
 						
@@ -71,33 +72,33 @@
                 </div>
             </div>
 
-            <div class="row">
-
+            <!-- <div class="row">
+            
                 <div class="col-sm-4">
                     <div class="card-box tilebox-one">
                         <i class="icon-layers float-right text-muted"></i>
                         <h6 class="text-muted text-uppercase mt-0">Orders</h6>
                         <h2 class="m-b-20" data-plugin="counterup">{{ $product->orderDetails->sum('quantity') }}</h2>
                     </div>
-                </div><!-- end col -->
-
+                </div>end col
+            
                 <div class="col-sm-4">
                     <div class="card-box tilebox-one">
                         <i class="icon-paypal float-right text-muted"></i>
                         <h6 class="text-muted text-uppercase mt-0">Tồn Kho</h6>
                         <h2 class="m-b-20">$<span data-plugin="counterup">{{ $product->quantity - ($product->orderDetails->sum('quantity')) }}</span></h2>
                     </div>
-                </div><!-- end col -->
-
+                </div>end col
+            
                 <div class="col-sm-4">
                     <div class="card-box tilebox-one">
                         <i class="icon-rocket float-right text-muted"></i>
                         <h6 class="text-muted text-uppercase mt-0">Đã Bán</h6>
                         <h2 class="m-b-20" data-plugin="counterup"></h2>
                     </div>
-                </div><!-- end col -->
-
-            </div>
+                </div>end col
+            
+            </div> -->
             <!-- end row -->
 
 			

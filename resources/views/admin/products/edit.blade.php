@@ -80,8 +80,8 @@
                                 <div class="form-group row">
                                     <label class="col-2 col-form-label">Danh Mục<span class="text-danger">*</span></label>
                                     <div class="col-10">
-                                        <select name="category_id" class="form-control">
-                                            <option selected>Chọn danh mục</option>
+                                        <select name="category_id" class="form-control" required>
+                                            <option value='' selected>Chọn danh mục</option>
 											@foreach($categories as $category)
 											@if($category->id == $product->category_id)
 											<option value="{{ $category->id }}" selected>{{ $category->id }}. {{ $category->name }}</option>

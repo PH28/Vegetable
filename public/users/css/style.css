@@ -8,6 +8,7 @@ html, body{
     font-size: 100%;
 	font-family: 'Open Sans', sans-serif;
 	background:#ffffff;
+
 }
 ul li,ol li{
 	font-size:14px;
@@ -423,8 +424,9 @@ ul.dropdown-menu.drp-mnu li a i {
 /*-- //banner --*/
 /*-- banner_bottom --*/
 .banner_bottom,.top-brands,.fresh-vegetables,.w3l_banner_nav_right_banner3_btm,.testimonials,.team,.newsletter-top-serv-btm,.w3ls_w3l_banner_nav_right_grid_sub{
-	padding:5em 0 !important;
+	padding:2em 0 !important;
 }
+
 .wthree_banner_bottom_left {
     padding-left: 0;
 }
@@ -1669,7 +1671,7 @@ section#tables  p {
 }
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
 	font-size: 0.9em;
-	color: #999;
+	color: #676767;
 	border-top: none !important;
 }
 .tab-content > .active {

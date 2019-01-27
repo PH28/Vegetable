@@ -50,4 +50,21 @@ Route::get('categories/{id}/products', 'ProductController@productByCategory')->n
 Route::get('products/{product}', 'ProductController@show')->name('products.show');
 Route::get('search', 'ProductController@search')->name('search');
 Route::post('comments', 'CommentController@store')->name('comments.store');
+/*Route::get('users/{user}', 'UserController@showprofile')->middleware('auth')->name('users.profile');*/
 
+Route::group([
+    'middleware' => ['auth','myAccount'],
+    'prefix'     => 'users',  //tiền tố cho domain
+    'as'         => 'users.',  //tiền tố của name route
+], 
+function () {
+	Route::get('/{id}', 'UserController@showprofile')->name('profile');
+	Route::get('/{id}/edit', 'UserController@edit')->name('edit'); 
+	Route::put('/{id}', 'UserController@update')->name('update');
+	Route::get('{id}/showOrder/{order}', 'UserController@showOrder')->name('show-order');
+	Route::put('{id}/orders/{order}', 'OrderController@update')->name('orders.update'); 
+
+});
+
+Route::get('/checkout', 'OrderController@index')->name('checkout');
+Route::post('/checkout/store', 'OrderController@store')->name('checkout.store');

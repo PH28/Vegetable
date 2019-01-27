@@ -81,9 +81,9 @@
             <div class="profile-user-box card-box bg-custom">
                 <div class="row">
                     <div class="col-sm-9">
-                        <span class="pull-left mr-3"><img src="{{ asset($user->avatar) }}" alt="" class="thumb-lg rounded-circle"></span>
+                        <span class="pull-left mr-3"><img src="{{ asset($user->avatar ? $user->avatar : 'http://via.placeholder.com/200x200') }}" alt="" class="thumb-lg rounded-circle"></span>
                         <div class="media-body text-white">
-                            <h4 class="mt-1 mb-1 font-18 text-capitalize">{{ $user->username }}</h4>
+                            <h4 class="mt-1 mb-1 font-18 text-capitalize">{{ $user->first_name }}</h4>
                             <p class="font-13 text-light">{{ $user->dob }}</p>
                             <p class="text-light mb-0">{{ $user->address }}</p>
                         </div>
@@ -166,8 +166,8 @@
 
         <div class="col-md-8">
 
-            <div class="row">
-
+            <!-- <div class="row">
+            
                 <div class="col-sm-4">
                     <div class="card-box tilebox-one">
                         <i class="icon-layers float-right text-muted"></i>
@@ -175,8 +175,8 @@
                         <h2 class="m-b-20" data-plugin="counterup">1,587</h2>
                         <span class="badge badge-custom"> +11% </span> <span class="text-muted">From previous period</span>
                     </div>
-                </div><!-- end col -->
-
+                </div>end col
+            
                 <div class="col-sm-4">
                     <div class="card-box tilebox-one">
                         <i class="icon-paypal float-right text-muted"></i>
@@ -184,8 +184,8 @@
                         <h2 class="m-b-20">$<span data-plugin="counterup">46,782</span></h2>
                         <span class="badge badge-danger"> -29% </span> <span class="text-muted">From previous period</span>
                     </div>
-                </div><!-- end col -->
-
+                </div>end col
+            
                 <div class="col-sm-4">
                     <div class="card-box tilebox-one">
                         <i class="icon-rocket float-right text-muted"></i>
@@ -193,10 +193,10 @@
                         <h2 class="m-b-20" data-plugin="counterup">1,890</h2>
                         <span class="badge badge-custom"> +89% </span> <span class="text-muted">Last year</span>
                     </div>
-                </div><!-- end col -->
-
+                </div>end col
+            
             </div>
-            <!-- end row -->
+            end row -->
 
             
 
@@ -210,20 +210,22 @@
                             <th>#</th>
                             <th>Order ID</th>
                             <th>Ngày Đặt</th>
-                            <th>Tổng Tiền</th>
+                            <th>Tổng Tiền (vnđ)</th>
                             <th>Trạng Thái</th>
                             <th>Phương Thức Thanh Toán</th>
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($orders as $order)
                         <tr>
-                            <td>1</td>
-                            <td>Adminox Admin</td>
-                            <td>01/01/2015</td>
-                            <td>07/05/2015</td>
-                            <td><span class="label label-info">Work in Progress</span></td>
-                            <td>Coderthemes</td>
+                            <td>{{$loop->iteration}}</td>
+                            <td><a class="font-weight-bold" href="{{route('admin.orders.show', $order->id)}}">{{$order->id}}</a></td>
+                            <td>{{$order->created_at}}</td>
+                            <td>{{number_format($order->total)}}</td>
+                            <td class="font-weight-bold text-{{$order->status->id==1?'info':($order->status->id==2?'primary':($order->status->id==3?'success':'danger'))}}">{{$order->status->name}}</td>
+                            <td><span class="label label-info">{{$order->typePayment->name}}</span></td>
                         </tr>
+                        @endforeach
                         
 
                         </tbody>

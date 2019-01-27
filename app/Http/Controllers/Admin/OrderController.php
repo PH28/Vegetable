@@ -18,10 +18,10 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders_pending = Order::where('status_id', 1)->get();
-        $orders_approved = Order::where('status_id', 2)->get();
-        $orders_completed = Order::where('status_id', 3)->get();
-        $orders_cancelled = Order::where('status_id', 4)->get();
+        $orders_pending = Order::where('status_id', 1)->orderBy('id', 'desc')->get();
+        $orders_approved = Order::where('status_id', 2)->orderBy('id', 'desc')->get();
+        $orders_completed = Order::where('status_id', 3)->orderBy('id', 'desc')->get();
+        $orders_cancelled = Order::where('status_id', 4)->orderBy('id', 'desc')->get();
 
         return view('admin.orders.index', compact('orders_pending', 'orders_approved', 'orders_completed', 'orders_cancelled'));
     }
@@ -83,7 +83,7 @@ class OrderController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(OrderRequest $request, Order $order)
+    public function update(Request $request, Order $order)
     {
         $data = $request->all();
         $order->update($data);

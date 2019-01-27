@@ -75,6 +75,7 @@ class RegisterController extends Controller
     public function register(RegisterRequest $request){    
         $data = $request->except('password_confirmation');
         $confirmation_code = str_random(30);
+        $data['role_id'] = 2;
         $data['password'] = bcrypt($request->password);
         $data['confirmation_code'] = $confirmation_code;
         $user = User::create($data)->toArray();

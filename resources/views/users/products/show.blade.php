@@ -8,11 +8,28 @@
 	<h3>Best Deals For New Products<span class="blink_me"></span></h3>
 </div>
 <div class="agileinfo_single">
+	<div class="col-sm-12">
+		@if($message = Session::get('success'))
+			<div class="alert alert-success">
+				<strong>{{ $message }}</strong>
+			</div>
+		@endif
+		@if($message = Session::get('danger'))
+			<div class="alert alert-danger">
+				<strong>{{ $message }}</strong>
+			</div>
+		@endif
+	</div>
+
 	<h5>{{$product->name}}</h5>
 	<div class="col-md-4 agileinfo_single_left">
+		@if($product->images->first())
 		@foreach($product->images as $image)
-		<img id="example" src="{{ asset($image->path ? $image->path : 'http://via.placeholder.com/300x300')}}" style="width: 100%;" alt=" " class="img-responsive" />
+		<img id="example" src="{{ asset($image->path ? $image->path : 'http://via.placeholder.com/300')}}" style="width: 100%;" alt=" " class="img-responsive" />
 		@endforeach
+		@else
+		<img id="example" src="{{asset('http://via.placeholder.com/300')}}" style="width: 100%;" alt=" " class="img-responsive" />
+		@endif
 	</div>
 	<div class="col-md-8 agileinfo_single_right">
 		<div class="rating">
@@ -38,23 +55,12 @@
 		</div>
 		<div class="snipcart-item block">
 			<div class="snipcart-thumb agileinfo_single_right_snipcart">
-				<h4>{{$product->price}}<span>VNĐ</span></h4>
+				<h4>{{number_format($product->price)}}<span>VNĐ</span></h4>
 			</div>
 			<div class="snipcart-details agileinfo_single_right_details">
-				<form action="#" method="post">
-					<fieldset>
-						<input type="hidden" name="cmd" value="_cart" />
-						<input type="hidden" name="add" value="1" />
-						<input type="hidden" name="business" value=" " />
-						<input type="hidden" name="item_name" value="{{ $product->name }}" />
-						<input type="hidden" name="amount" value="{{$product->price}}" />
-						<input type="hidden" name="discount_amount" value="0.00" />
-						<input type="hidden" name="currency_code" value="VND" />
-						<input type="hidden" name="return" value=" " />
-						<input type="hidden" name="cancel_return" value=" " />
-						<input type="submit" name="submit" value="Add to cart" class="button" />
-					</fieldset>
-				</form>
+				<div class="addtocart-btn button">
+                    <a class="add-to-cart button" data-id="{{ $product->id }}" data-name="{{ $product->name }}" data-quantity="1" data-price="{{ $product->price }}" data-image="{{asset($product->images->first()? $product->images->first()->path:'http://via.placeholder.com/300')}}" href="#" data-login="{{Auth::check()}}">Add to cart</a>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -133,7 +139,7 @@
                   <figure class="thumbnail">
                     <img class="img-responsive" width="100%" src="{{ asset($comment->user->avatar ? $comment->user->avatar : 'http://www.tangoflooring.ca/wp-content/uploads/2015/07/user-avatar-placeholder.png')}}" />
                   </figure>
-                  <figcaption class="text-center font-weight-bold text-capitalize"><strong>{{ $comment->user->username }}</strong></figcaption>
+                  <figcaption class="text-center font-weight-bold text-capitalize"><strong>{{ $comment->user->username?$comment->user->username:$comment->user->first_name }}</strong></figcaption>
                 </div>
                 <div class="col-md-10 col-sm-10">
                   <div class="panel panel-default arrow left">
@@ -188,23 +194,12 @@
 								<div class="snipcart-thumb">
 									<a href="{{route('products.show', $product->id)}}"><img src="{{asset($product->images->first()->path)}}" alt=" " class="img-responsive" /></a>
 									<p>{{$product->name}}</p>
-									<h4>{{$product->price}} <span>VNĐ</span></h4>
+									<h4>{{number_format($product->price)}} <span>VNĐ</span></h4>
 								</div>
 								<div class="snipcart-details">
-									<form action="#" method="post">
-										<fieldset>
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" />
-											<input type="hidden" name="business" value=" " />
-											<input type="hidden" name="item_name" value="{{$product->name}}" />
-											<input type="hidden" name="amount" value="{{$product->price}}" />
-											<input type="hidden" name="discount_amount" value="0.00" />
-											<input type="hidden" name="currency_code" value="USD" />
-											<input type="hidden" name="return" value=" " />
-											<input type="hidden" name="cancel_return" value=" " />
-											<input type="submit" name="submit" value="Add to cart" class="button" />
-										</fieldset>
-									</form>
+									<div class="addtocart-btn button">
+	                                    <a class="add-to-cart button" data-id="{{ $product->id }}" data-name="{{ $product->name }}" data-quantity="1" data-price="{{ $product->price }}" data-image="{{asset($product->images->first()->path)}}" href="#" data-login="{{Auth::check()}}">Add to cart</a>
+									</div>
 								</div>
 							</div>
 						</figure>

@@ -23,7 +23,7 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group row">
-                                    <label class="col-2 col-form-label" for="name">Tên</label>
+                                    <label class="col-2 col-form-label" for="name">Tên<span class="text-danger">*</span></label>
                                     <div class="col-10">
                                         <input name="first_name" id="name" type="text" class="form-control" placeholder="Nhập tên người dùng" value="{{ $user->first_name }}">
                                         @if($errors->has('first_name'))
@@ -36,7 +36,7 @@
                                 
 
                                 <div class="form-group row">
-                                    <label class="col-2 col-form-label" for="username">Username</label>
+                                    <label class="col-2 col-form-label" for="username">Usernames <span class="text-danger">*</span></label>
                                     <div class="col-10">
                                         <input name="username" type="text" id="username" class="form-control" placeholder="Nhập username" value="{{$user->username}}">
                                         @if($errors->has('username'))
@@ -49,7 +49,7 @@
                                 
 
                                 <div class="form-group row">
-                                    <label class="col-2 col-form-label" for="email">Email</label>
+                                    <label class="col-2 col-form-label" for="email">Email<span class="text-danger">*</span></label>
                                     <div class="col-10">
                                         <input name="email" type="email" id="email"  class="form-control" placeholder="Email" value="{{$user->email}}">
                                         @if($errors->has('email'))
@@ -99,25 +99,18 @@
                                     </div>
                                 </div>
                                 
+                                <!-- kind acc -->
 
                                 <div class="form-group row">
-                                    <label class="col-2 col-form-label">Loại Tài Khoản</label>
                                     <div class="col-10">
-                                        <select name="role_id" class="form-control">
-                                            @foreach($roles as $role)
-                                            @if($role->id == $user->role_id)
-                                            <option value="{{ $role->id }}" selected>{{ $role->name }}</option>
-                                            @else
-                                            <option value="{{ $role->id }}">{{ $role->name }}</option>
-                                            @endif
-                                            @endforeach
-                                        </select>
+                                        <input type="hidden" name="role_id" value="{{$user->role_id}}">
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
-                                    <label class="col-2 col-form-label">Ngày Sinh</label>
+                                    <label class="col-2 col-form-label">Ngày Sinh<span class="text-danger">*</span></label>
                                     <div class="col-10">
-                                        <input name="dob" class="form-control" type="date" >
+                                        <input name="dob" class="form-control" type="date" value="{{$user->dob}}" >
                                         @if($errors->has('dob'))
                                             <div class="alert alert-danger">
                                                 <span class="strong">{{ $errors->first('dob') }}</span>

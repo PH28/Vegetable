@@ -55,6 +55,7 @@
 					                <th>Sản Phẩm</th>
 					                <th>Title</th>
 					                <th>Content</th>
+					                <th>Rating</th>
 					                <th>Created At</th>
 					                <th>Action</th>
 					                <th>Delete</th>
@@ -66,10 +67,11 @@
 					            @foreach($comments_unactive as $comment)
 								<tr>
 									<td>{{ $comment->id }}</td>
-									<td><a href="{{ route('admin.users.show', $comment->user->id) }}">{{ $comment->user->username }}</a></td>
+									<td><a href="{{ route('admin.users.show', $comment->user->id) }}">{{ $comment->user->username?$comment->user->username:$comment->user->first_name }}</a></td>
 									<td><a href="{{ route('admin.products.show', $comment->product->id) }}">{{ $comment->product->name }}</a></td>
 									<td>{{ $comment->title }}</td>
 									<td>{{ $comment->content }}</td>
+									<td>{{ $comment->rating }}</td>
 									<td>{{ $comment->created_at }}</td>
 									<td>
 										@if($comment->is_active == 1)
@@ -116,6 +118,7 @@
 					                <th>Sản Phẩm</th>
 					                <th>Title</th>
 					                <th>Content</th>
+					                <th>Rating</th>
 					                <th>Created At</th>
 					                <th>Action</th>
 					                <th>Delete</th>
@@ -127,10 +130,11 @@
 					            @foreach($comments_active as $comment)
 								<tr>
 									<td>{{ $comment->id }}</td>
-									<td><a href="{{ route('admin.users.show', $comment->user->id) }}">{{ $comment->user->username }}</a></td>
+									<td><a href="{{ route('admin.users.show', $comment->user->id) }}">{{ $comment->user->username?$comment->user->username:$comment->user->first_name }}</a></td>
 									<td><a href="{{ route('admin.products.show', $comment->product->id) }}">{{ $comment->product->name }}</a></td>
 									<td>{{ $comment->title }}</td>
 									<td>{{ $comment->content }}</td>
+									<td>{{ $comment->rating }}</td>
 									<td>{{ $comment->created_at }}</td>
 									<td>
 										@if($comment->is_active == 1)
@@ -175,6 +179,7 @@
 					                <th>Sản Phẩm</th>
 					                <th>Title</th>
 					                <th>Content</th>
+					                <th>Rating</th>
 					                <th>Created At</th>
 					                <th>Action</th>
 					                <th>Delete</th>
@@ -186,10 +191,11 @@
 					            @foreach($comments as $comment)
 								<tr>
 									<td>{{ $comment->id }}</td>
-									<td><a href="{{ route('admin.users.show', $comment->user->id) }}">{{ $comment->user->username }}</a></td>
+									<td><a href="{{ route('admin.users.show', $comment->user->id) }}">{{ $comment->user->username?$comment->user->username:$comment->user->first_name }}</a></td>
 									<td><a href="{{ route('admin.products.show', $comment->product->id) }}">{{ $comment->product->name }}</a></td>
 									<td>{{ $comment->title }}</td>
 									<td>{{ $comment->content }}</td>
+									<td>{{ $comment->rating }}</td>
 									<td>{{ $comment->created_at }}</td>
 									<td>
 										@if($comment->is_active == 1)
