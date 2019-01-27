@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\User;
+use App\Product;
+use App\Comment;
+use App\Order;
 
 class HomeController extends Controller
 {
@@ -14,7 +18,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard');
+        $total_new_orders = Order::where('status_id', 1)->count();
+        $total_new_comments = Comment::where('is_active', 0)->count();
+        $total_products = Product::all()->count();
+        $total_users = User::all()->count();
+        return view('admin.dashboard', compact('total_new_orders', 'total_new_comments', 'total_products', 'total_users'));
     }
 
     /**

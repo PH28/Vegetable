@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Product;
 use App\Category;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\ProductRequest;
 
 class ProductController extends Controller
@@ -17,7 +18,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with('images')->get();
+        $products = Product::with('images')->orderBy('id','DESC')->get();
         return view('admin.products.index', compact('products'));
     }
 
@@ -63,7 +64,7 @@ class ProductController extends Controller
             $product = Product::create($productData);    
         }
   
-        return redirect()->route('admin.products.index')->with('success', 'Sản phẩm đã được tạo mới thành công!!!');
+        return redirect()->route('admin.products.show', compact('product'))->with('success', 'Sản phẩm đã được tạo mới thành công!!!');
     }
 
     /**
@@ -76,12 +77,15 @@ class ProductController extends Controller
     {
         $images = $product->images()->get();
         $comments = $product->comments->where('is_active', 1);
-        return view('admin.products.show', compact('product', 'images', 'comments'));
+        $quantities_sold = DB::table('products')
+                        ->join('order_details', 'products.id', '=', 'order_details.product_id')
+                        ->join('orders', 'orders.id', '=', 'order_details.order_id')
+                        ->where('products.id', '=', $product->id)
+                        ->where('orders.status_id', '<>', '4')
+                        ->sum('order_details.quantity');
 
-        /*foreach ($product->orderDetails as $orderDetail) {
-            $order_id = $orderDetail->order->id;
-            dd($order_id);
-        }*/
+        return view('admin.products.show', compact('product', 'images', 'comments', 'quantities_sold'));
+        
     }
 
     /**

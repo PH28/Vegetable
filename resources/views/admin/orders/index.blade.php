@@ -77,6 +77,7 @@
 				                    <th>Tổng Tiền</th>
 				                    <th>Địa Chỉ</th>
 				                    <th>Số Điện Thoại</th>
+				                    <th>Email</th>
 				                    <th>Phương Thức Thanh Toán</th>
 				                    <th>Sửa</th>
 				                    <th>Xoá</th>
@@ -87,10 +88,15 @@
 					            @foreach($orders_pending as $order)
 								<tr>
 									<td><a href="{{ route('admin.orders.show', $order->id) }}"><strong>{{ $order->id }}</strong></a></td>
+									@if($order->user)
 									<td><a href="{{ route('admin.users.show', $order->user->id) }}"><strong>{{ $order->user->first_name }}</strong></a></td>
+									@else
+									<td><strong>{{ $order->fullname }}</strong></td>
+									@endif
 									<td>{{ $order->total }}</td>
 									<td>{{ $order->address }}</td>
 									<td>{{ $order->phone }}</td>
+									<td>{{$order->email}}</td>
 									<td>{{ $order->typePayment->name }}</td>
 									<td><a class="btn btn-info" href="{{ route('admin.orders.edit', $order->id) }}" data-toggle="tooltip" data-original-title="Chỉnh Sửa"><i  class="fa fa-edit"></i></a>
 									</td>
@@ -98,7 +104,7 @@
 										<form action="{{ route('admin.orders.destroy', $order->id) }}" method="POST" role="form">
 			                                @csrf
 			                                @method('DELETE')                   
-			                                <button onclick="return confirm('Bạn có chắc chắn muốn xoá đơn hàng này?')" data-toggle="tooltip" data-original-title="Xoá Product" type="submit" class="btn btn-danger"><i class="dripicons-trash"></i></button>
+			                                <button onclick="return confirm('Bạn có chắc chắn muốn xoá đơn hàng này?')" data-toggle="tooltip" data-original-title="Xoá đơn hàng" type="submit" class="btn btn-danger"><i class="dripicons-trash"></i></button>
 			                            </form>
 					                </td>
 									
@@ -122,6 +128,7 @@
 				                    <th>Tổng Tiền</th>
 				                    <th>Địa Chỉ</th>
 				                    <th>Số Điện Thoại</th>
+				                    <th>Email</th>
 				                    <th>Phương Thức Thanh Toán</th>
 				                    <th>Sửa</th>
 				                    <th>Xoá</th>
@@ -132,10 +139,15 @@
 					            @foreach($orders_approved as $order)
 								<tr>
 									<td><a href="{{ route('admin.orders.show', $order->id) }}"><strong>{{ $order->id }}</strong></a></td>
+									@if($order->user)
 									<td><a href="{{ route('admin.users.show', $order->user->id) }}"><strong>{{ $order->user->first_name }}</strong></a></td>
+									@else
+									<td><strong>{{ $order->fullname }}</strong></td>
+									@endif
 									<td>{{ $order->total }}</td>
 									<td>{{ $order->address }}</td>
 									<td>{{ $order->phone }}</td>
+									<td>{{$order->email}}</td>
 									<td>{{ $order->typePayment->name }}</td>
 									<td><a class="btn btn-info" href="{{ route('admin.orders.edit', $order->id) }}" data-toggle="tooltip" data-original-title="Chỉnh Sửa"><i  class="fa fa-edit"></i></a>
 									</td>
@@ -143,7 +155,7 @@
 										<form action="{{ route('admin.orders.destroy', $order->id) }}" method="POST" role="form">
 			                                @csrf
 			                                @method('DELETE')                   
-			                                <button onclick="return confirm('Bạn có chắc chắn muốn xoá đơn hàng này?')" data-toggle="tooltip" data-original-title="Xoá Product" type="submit" class="btn btn-danger"><i class="dripicons-trash"></i></button>
+			                                <button onclick="return confirm('Bạn có chắc chắn muốn xoá đơn hàng này?')" data-toggle="tooltip" data-original-title="Xoá đơn hàng" type="submit" class="btn btn-danger"><i class="dripicons-trash"></i></button>
 			                            </form>
 					                </td>
 									
@@ -166,6 +178,7 @@
 				                    <th>Tổng Tiền</th>
 				                    <th>Địa Chỉ</th>
 				                    <th>Số Điện Thoại</th>
+				                    <th>Email</th>
 				                    <th>Phương Thức Thanh Toán</th>
 				          
 					            </tr>
@@ -175,10 +188,15 @@
 					            @foreach($orders_completed as $order)
 								<tr>
 									<td><a href="{{ route('admin.orders.show', $order->id) }}"><strong>{{ $order->id }}</strong></a></td>
+									@if($order->user)
 									<td><a href="{{ route('admin.users.show', $order->user->id) }}"><strong>{{ $order->user->first_name }}</strong></a></td>
+									@else
+									<td><strong>{{ $order->fullname }}</strong></td>
+									@endif
 									<td>{{ $order->total }}</td>
 									<td>{{ $order->address }}</td>
 									<td>{{ $order->phone }}</td>
+									<td>{{$order->email}}</td>
 									<td>{{ $order->typePayment->name }}</td>
 									
 								</tr>
@@ -200,6 +218,7 @@
 				                    <th>Tổng Tiền</th>
 				                    <th>Địa Chỉ</th>
 				                    <th>Số Điện Thoại</th>
+				                    <th>Email</th>
 				                    <th>Phương Thức Thanh Toán</th>
 				                   
 					            </tr>
@@ -209,10 +228,15 @@
 					            @foreach($orders_cancelled as $order)
 								<tr>
 									<td><a href="{{ route('admin.orders.show', $order->id) }}"><strong>{{ $order->id }}</strong></a></td>
+									@if($order->user)
 									<td><a href="{{ route('admin.users.show', $order->user->id) }}"><strong>{{ $order->user->first_name }}</strong></a></td>
+									@else
+									<td><strong>{{ $order->fullname }}</strong></td>
+									@endif
 									<td>{{ $order->total }}</td>
 									<td>{{ $order->address }}</td>
 									<td>{{ $order->phone }}</td>
+									<td>{{$order->email}}</td>
 									<td>{{ $order->typePayment->name }}</td>
 									
 								</tr>

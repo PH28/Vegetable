@@ -47,7 +47,8 @@
 	                <tr>
 	                    <th>ID</th>
 	                    <th>Tên</th>
-	                    <th>Giá</th>
+	                    <th>Hình ảnh</th>
+	                    <th>Giá (vnđ)</th>
 	                    <th>Số Lượng</th>
 	                    <th>Ngày Tạo</th>
 	                    <th>Sửa</th>
@@ -61,7 +62,8 @@
 					<tr>
 						<td>{{ $product->id }}</td>
 						<td><a href="{{ route('admin.products.show', $product->id) }}"><strong>{{ $product->name }}</strong></a></td>
-						<td>{{ $product->price }}</td>
+						<td><img style="width: 100px; height: 70px;" src="{{ asset($product->images->first()->path) }}" alt=""></td>
+						<td>{{ number_format($product->price) }}</td>
 						<td>{{ $product->quantity }}</td>
 						<td>{{ $product->created_at }}</td>
 						<td><a class="btn btn-info" href="{{ route('admin.products.edit', $product->id) }}" data-toggle="tooltip" data-original-title="Chỉnh Sửa"><i  class="fa fa-edit"></i></a>

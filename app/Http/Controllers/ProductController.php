@@ -24,10 +24,14 @@ class ProductController extends Controller
 
     public function productByCategory($id){
         $category = Category::find($id);
-        $productsByCategory = Product::where('category_id', $id)->paginate(4);
+        $productsByCategory = Product::where('category_id', $id)->orderBy('id', 'DESC')->paginate(4);
         $otherCategories = Category::where([['parent_id', $category->parent_id], ['id', '<>', $category->id]])->inRandomOrder()->take(2)->get();
+
+        $relative_products1 = Product::where('category_id', $otherCategories[0]->id)->orderBy('id', 'DESC')->paginate(4);
+        $relative_products2 = Product::where('category_id', $otherCategories[1]->id)->orderBy('id', 'DESC')->paginate(4);
+     
         
-        return view('users.products.productByCategory', compact('productsByCategory', 'category', 'otherCategories'));
+        return view('users.products.productByCategory', compact('productsByCategory', 'category', 'otherCategories', 'relative_products1', 'relative_products2'));
     }
 
 

@@ -17,8 +17,8 @@ $factory->define(App\Order::class, function (Faker $faker) {
         'fullname' =>$faker->name,
     	'address' => $faker->address,
     	'phone' => $faker->phoneNumber,
+        'email'=> $faker->email,
     	'type_payment_id' => $faker->randomElement($typePaymentIds),
-    	'date' => $faker->dateTime(),
     	'note' => $faker->realText(200),
     	'status_id' => $faker->randomElement($statusIds)
 

@@ -38,7 +38,7 @@ class CommentController extends Controller
     {
         $data = $request->all();
         Comment::create($data);
-        return redirect()->route('products.show', $request->product_id);
+        return redirect()->route('products.show', $request->product_id)->with('success', 'Cảm ơn bạn đã dành thời gian đánh giá sản phẩm của chúng tôi!');
     }
 
     /**

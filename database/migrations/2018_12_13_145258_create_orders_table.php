@@ -15,14 +15,14 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
+            $table->integer('user_id')->nullable()  ;
             $table->decimal('total', 9, 0); //tong gia tien
             $table->string('fullname');
             $table->string('address');
             $table->string('phone');
+            $table->string('email');
             $table->integer('type_payment_id')->unsigned()->nullable();  //phương thức thanh toán
-            $table->timestamp('date');
-            $table->string('note');  //ghi chú cho đơn hàng
+            $table->string('note')->nullable();  //ghi chú cho đơn hàng
             $table->integer('status_id')->unsigned()->nullable(); //trạng thái đơn hàng đã giao hay chưa.
             $table->timestamps();
         });

@@ -7,7 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-<title>Grocery Store a Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
+<title>Vegetable | Nông sản sạch</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -19,6 +19,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!-- //for-mobile-apps -->
 
+<link href="{{asset('users/css/bootstrap4.css')}}" rel="stylesheet" type="text/css" media="all" />
 <link href="{{asset('users/css/bootstrap.css')}}" rel="stylesheet" type="text/css" media="all" />
 <link href="{{asset('users/css/style.css')}}" rel="stylesheet" type="text/css" media="all" />
 <!-- font-awesome icons -->
@@ -169,27 +170,32 @@ $(document).ready(function(){
 	</script>
 <!-- //here ends scrolling icon -->
 
-<script src="{{ asset('users/js/minicart.js')}}"></script>
+<script src="{{ asset('users/js/cart.js')}}"></script>
+
+
+<!-- <script src="{{ asset('users/js/minicart.js')}}"></script>
 <script>
-		paypal.minicart.render();
+	paypal.minicart.render();
 
-		paypal.minicart.cart.on('checkout', function (evt) {
-			var items = this.items(),
-				len = items.length,
-				total = 0,
-				i;
+	paypal.minicart.cart.on('checkout', function (evt) {
+		var items = this.items(),
+			len = items.length,
+			total = 0,
+			i;
 
-			// Count the number of each item in the cart
-			for (i = 0; i < len; i++) {
-				total += items[i].get('quantity');
-			}
+		// Count the number of each item in the cart
+		for (i = 0; i < len; i++) {
+			total += items[i].get('quantity');
+		}
 
-			if (total < 3) {
-				alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
-				evt.preventDefault();
-			}
-		});
+		if (total < 3) {
+			alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
+			evt.preventDefault();
+		}
+	});
 
-	</script>
+</script> -->
+
+
 </body>
 </html>

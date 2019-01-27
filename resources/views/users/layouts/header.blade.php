@@ -10,14 +10,50 @@
 			</form>
 		</div>
 		<div class="product_list_header">  
-			<form action="#" method="post" class="last">
-                <fieldset>
-                    <input type="hidden" name="cmd" value="_cart" />
-                    <input type="hidden" name="display" value="1" />
-                    <input type="submit" name="submit" value="View your cart" class="button" />
-                </fieldset>
-            </form>
+
+<!-- 	                <a href="" class="button view-your-cart">View your cart</a> -->
+                <input type="submit" name="submit" value="View your cart" class="button cartview" data-login="{{Auth::check()}}" />
 		</div>
+		<!-- View mini cart  -->
+		<div class="view-cart">
+			
+			<!-- <table class="table table-hover">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Name</th>
+						<th>Image</th>
+						<th>Price</th>
+						<th>Quantity</th>
+						<th>Total</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1</td>
+						<td>Ngò</td>
+						<td></td>
+						<td>10000</td>
+						<td>2</td>
+						<td>20000</td>
+					</tr>
+				</tbody>
+			</table> -->
+
+			<ul class="minicart">
+				<li class="cart-item">
+					<span class="cart-detail-name">name</span>
+					<span class="cart-detail-quantity">quantity</span>
+					<span class="btn btn-danger cart-detail-remove"><i class="fa fa-remove"></i></span>
+					<span class="cart-detail-price">price</span>
+				</li>
+			</ul>
+			<div class="cart-footer">
+				<div class="cart-subtotal">Subtotal: <span class="subtotal">1000</span></div>
+				<a href="{{route('checkout')}}"><button class="cart-checkout" type="submit">Check Out</button></a>
+			</div>
+		</div>
+		<!-- end view minicart -->
 		<div class="w3l_header_right">
 			<ul>
 				<li class="dropdown profile_details_drop">
@@ -33,7 +69,7 @@
                                 </li>
 
                                 <!-- item-->
-                                </li><li><a href="#"><i class="fa fa-user-o"></i>My Account</a></li></li>
+                                </li><li><a href="{{route('users.profile', Auth::user()->id)}}"><i class="fa fa-user-o"></i>My Account</a></li></li>
 
 								<li>
 									<a  href="{{ route('logout') }}"
@@ -86,10 +122,10 @@
 			</div>
 			<div class="w3ls_logo_products_left1">
 				<ul class="special_items">
-					<li><a href="events.html">Events</a><i>/</i></li>
-					<li><a href="about.html">About Us</a><i>/</i></li>
-					<li><a href="products.html">Best Deals</a><i>/</i></li>
-					<li><a href="services.html">Services</a></li>
+					<li><a href="#">Events</a><i>/</i></li>
+					<li><a href="#">About Us</a><i>/</i></li>
+					<li><a href="#">Best Deals</a><i>/</i></li>
+					<li><a href="#">Services</a></li>
 				</ul>
 			</div>
 			<div class="w3ls_logo_products_left1">
@@ -101,4 +137,5 @@
 			<div class="clearfix"> </div>
 		</div>
 	</div>
+	<input type="hidden" class="cart-session" value="{{ session()->get('cart') }}">
 <!-- end header -->
